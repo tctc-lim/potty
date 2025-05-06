@@ -5523,7 +5523,7 @@ section {
 
 .progress-wrap::after {
   position: absolute;
-  content: "ï¢";
+  content: "\f062";
   font: var(--fa-font-solid);
   text-align: center;
   line-height: 46px;
