@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Arolax HTML5 Template">
-  <title>Poe International</title>
+  <meta name="description" content="Poe International HTML5 Template">
+  <title>PoeInternational</title>
 
   <!-- Fav Icon -->
   <link rel="icon" type="image/x-icon" href="assets/imgs/logo/favicon.png">
@@ -429,37 +429,37 @@
                     </div>
                     <div class="services-wrapper-box">
                       <div class="services-wrapper has_fade_anim" data-fade-from="left">
-                        <a href="service-details.html">
+                        <a href="service-details.html#branding">
                           <div class="service-box">
                             <h3 class="title">Branding and Digital Communication</h3>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
                           </div>
                         </a>
-                        <a href="service-details.html">
+                        <a href="service-details.html#multimedia">
                           <div class="service-box">
                             <h3 class="title">Multimedia</h3>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
                           </div>
                         </a>
-                        <a href="service-details.html">
+                        <a href="service-details.html#digital_management">
                           <div class="service-box">
                             <h3 class="title">Digital Management</h3>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
                           </div>
                         </a>
-                        <a href="service-details.html">
+                        <a href="service-details.html#print">
                           <div class="service-box">
                             <h3 class="title">Print</h3>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
                           </div>
                         </a>
-                        <a href="service-details.html">
+                        <a href="service-details.html#application-dev">
                           <div class="service-box">
                             <h3 class="title">Application Dev </h3>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
                           </div>
                         </a>
-                        <a href="service-details.html">
+                        <a href="service-details.html#training">
                           <div class="service-box">
                             <h3 class="title">Training</h3>
                             <span class="icon"><i class="fa-solid fa-arrow-right-long"></i></span>
@@ -571,7 +571,7 @@
                 <div class="btn-wrapper">
                   <div class="has_fade_anim" data-fade-from="top" data-fade-offset="100" data-ease="bounce">
                     <span class="btn-move">
-                      <a class="wc-btn wc-btn-circle btn-hover-bgchange btn-item" href="works.html">View all <br>
+                      <a class="wc-btn wc-btn-circle btn-hover-bgchange btn-item" href="projects.html">View all <br>
                         projects</a>
                     </span>
                   </div>
@@ -972,12 +972,12 @@
                     <div class="contact-formfield">
                       <select name="mainService" id="mainService" required>
                         <option value="">-- Select Main Service --</option>
-                        <option value="Branding and Digital Communication">Branding and Digital Communication</option>
-                        <option value="Event Branding/Management">Event Branding/Management</option>
+                        <option value="Branding_and_Digital_Communication">Branding and Digital Communication</option>
+                        <option value="Event_Branding_and_Management">Event Branding and Management</option>
                         <option value="Multimedia">Multimedia</option>
-                        <option value="Digital Management">Digital Management</option>
+                        <option value="Digital_Management">Digital Management</option>
                         <option value="Print">Print</option>
-                        <option value="Application Development">Application Development</option>
+                        <option value="Application_Development">Application Development</option>
                         <option value="Trainings">Trainings</option>
                       </select>
                     </div>
@@ -1090,39 +1090,91 @@
   <script src="assets/js/offcanvas.js"></script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      ScrollTrigger.config({
-        autoRefreshEvents: "DOMContentLoaded,load,resize"
-      });
+    const subServices = {
+      Branding_and_Digital_Communication: [
+        "Corporate Branding",
+        "Brand Identity Development",
+        "Brand Positioning & Messaging",
+        "Marketing & Communication Strategy",
+        "Employee Branding",
+        "Brand Reputation Management",
+        "Personal Brand Development",
+        "Media Relations",
+        "Social Media Management",
+        "Crisis Communication",
+        "Public Speaking & Event Participation"
+      ],
+      Event_Branding_and_Management: [
+        "Event Strategy & Development",
+        "Logistics & Planning",
+        "Marketing & Promotion",
+        "On-Site Management",
+        "Post-Event Evaluation"
+      ],
+      Multimedia: [
+        "Streaming Services",
+        "Live Streaming Setup",
+        "Content Production & Direction",
+        "Live Event Management",
+        "Post-Production Services",
+        "TV Commercials",
+        "Jingle and Voiceovers",
+        "Animations",
+        "Photography"
+      ],
+      Digital_Management: [
+        "SEO",
+        "PPC Advertising",
+        "Content Marketing",
+        "Social Media Marketing",
+        "Email Marketing",
+        "Marketing Automation",
+        "Content Creation",
+        "Content Strategy",
+        "Video Production",
+        "Graphic Design"
+      ],
+      Print: [
+        "Print Media Design & Layout",
+        "Copywriting & Editing",
+        "Printing & Production",
+        "Distribution Strategy",
+        "Environmental Branding"
+      ],
+      Application_Development: [
+        "Website Design & Planning",
+        "Website Development",
+        "Content Management",
+        "SEO",
+        "Product Design",
+        "Prototyping",
+        "Product Launch"
+      ],
+      Trainings: [
+        "Staff Brand Development",
+        "Employee Engagement",
+        "Employer Branding Strategy",
+        "Internal Communications Training",
+        "Customer Service Training",
+        "Brand Identity Evaluation",
+        "Competitive Brand Analysis",
+        "Customer Perception Survey"
+      ]
+    };
 
-      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+    document.getElementById("mainService").addEventListener("change", function () {
+      const subSelect = document.getElementById("subService");
+      const selected = this.value;
+      subSelect.innerHTML = '<option value="">-- Select Sub-Service --</option>';
 
-      // ScrollTrigger animation
-      gsap.from(".animate-me", {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        scrollTrigger: {
-          trigger: ".animate-me",
-          start: "top 80%",
-          toggleActions: "play none none reverse"
-        }
-      });
-
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            e.preventDefault();
-            gsap.to(window, {
-              duration: 1,
-              scrollTo: target,
-              ease: "power2.out"
-            });
-          }
+      if (selected && subServices[selected]) {
+        subServices[selected].forEach(sub => {
+          const opt = document.createElement("option");
+          opt.value = sub;
+          opt.textContent = sub;
+          subSelect.appendChild(opt);
         });
-      });
+      }
     });
 
     // text slider 
@@ -1181,118 +1233,6 @@
         }
       });
     });
-
-    const subServices = {
-      branding: [
-        "Corporate Branding",
-        "Brand Identity Development",
-        "Brand Positioning & Messaging",
-        "Marketing & Communication Strategy",
-        "Employee Branding",
-        "Brand Reputation Management",
-        "Personal Brand Development",
-        "Media Relations",
-        "Social Media Management",
-        "Crisis Communication",
-        "Public Speaking & Event Participation"
-      ],
-      event: [
-        "Event Strategy & Development",
-        "Logistics & Planning",
-        "Marketing & Promotion",
-        "On-Site Management",
-        "Post-Event Evaluation"
-      ],
-      multimedia: [
-        "Streaming Services",
-        "Live Streaming Setup",
-        "Content Production & Direction",
-        "Live Event Management",
-        "Post-Production Services",
-        "TV Commercials",
-        "Jingle and Voiceovers",
-        "Animations",
-        "Photography"
-      ],
-      digital: [
-        "SEO",
-        "PPC Advertising",
-        "Content Marketing",
-        "Social Media Marketing",
-        "Email Marketing",
-        "Marketing Automation",
-        "Content Creation",
-        "Content Strategy",
-        "Video Production",
-        "Graphic Design"
-      ],
-      print: [
-        "Print Media Design & Layout",
-        "Copywriting & Editing",
-        "Printing & Production",
-        "Distribution Strategy",
-        "Environmental Branding"
-      ],
-      application: [
-        "Website Design & Planning",
-        "Website Development",
-        "Content Management",
-        "SEO",
-        "Product Design",
-        "Prototyping",
-        "Product Launch"
-      ],
-      training: [
-        "Staff Brand Development",
-        "Employee Engagement",
-        "Employer Branding Strategy",
-        "Internal Communications Training",
-        "Customer Service Training",
-        "Brand Identity Evaluation",
-        "Competitive Brand Analysis",
-        "Customer Perception Survey"
-      ]
-    };
-
-    document.getElementById("mainService").addEventListener("change", function () {
-      const subSelect = document.getElementById("subService");
-      const selected = this.value;
-      subSelect.innerHTML = '<option value="">-- Select Sub-Service --</option>';
-
-      if (selected && subServices[selected]) {
-        subServices[selected].forEach(sub => {
-          const opt = document.createElement("option");
-          opt.value = sub;
-          opt.textContent = sub;
-          subSelect.appendChild(opt);
-        });
-      }
-    });
-
-    document.getElementById("subscribeForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const email = document.getElementById("email").value;
-      const formData = new FormData();
-      formData.append("email", email);
-
-      fetch("http://localhost:8000/subscribe.php", {
-        method: "POST",
-        body: formData
-      })
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("subscribe-message").innerText = data;
-          document.getElementById("subscribe-message").style.color = "green";
-          document.getElementById("email").value = "";
-        })
-        .catch(error => {
-          document.getElementById("subscribe-message").innerText = "Something went wrong. Please try again.";
-          document.getElementById("subscribe-message").style.color = "red";
-
-          console.error("Error:", error);
-        });
-    }); 
 
     // Refresh ScrollTrigger after all content is loaded
     window.addEventListener("load", () => {

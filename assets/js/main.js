@@ -257,3 +257,91 @@
       });
     })();
 })(jQuery);
+
+document
+  .getElementById("subscribeForm")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const formData = new FormData();
+    formData.append("email", email);
+
+    fetch("http://localhost:8000/subscribe.php", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        document.getElementById("subscribe-message").innerText = data;
+        document.getElementById("subscribe-message").style.color = "green";
+        document.getElementById("email").value = "";
+      })
+      .catch((error) => {
+        document.getElementById("subscribe-message").innerText =
+          "Something went wrong. Please try again.";
+        document.getElementById("subscribe-message").style.color = "red";
+
+        console.error("Error:", error);
+      });
+  });
+
+// GSAP and ScrollTrigger setup
+document.addEventListener("DOMContentLoaded", () => {
+  ScrollTrigger.config({
+    autoRefreshEvents: "DOMContentLoaded,load,resize",
+  });
+
+  gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+  // ScrollTrigger animation
+  gsap.from(".animate-me", {
+    opacity: 0,
+    y: 50,
+    duration: 1,
+    scrollTrigger: {
+      trigger: ".animate-me",
+      start: "top 80%",
+      toggleActions: "play none none reverse",
+    },
+  });
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        e.preventDefault();
+
+        // Push # to the URL manually (optional, for browsers that don't do it)
+        history.pushState(null, null, this.getAttribute("href"));
+
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: target,
+          ease: "power2.out",
+        });
+      }
+    });
+  });
+
+  // 🔥 Scroll to hash on page load if exists
+  if (window.location.hash) {
+    const target = document.querySelector(window.location.hash);
+    if (target) {
+      // Wait a bit to ensure everything is rendered
+      setTimeout(() => {
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: target,
+          ease: "power2.out",
+        });
+      }, 100); // Delay can be adjusted as needed
+    }
+  }
+});
+
+// Always refresh ScrollTrigger after load
+window.addEventListener("load", () => {
+  ScrollTrigger.refresh();
+});

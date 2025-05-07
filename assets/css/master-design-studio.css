@@ -7544,7 +7544,7 @@ section {
   pointer-events: none;
   transform: translate(-50%, -50%);
   transition: .15s;
-  z-index: 999
+  z-index: 99999;
 }
 
 .dark .cursor1 {
@@ -7578,7 +7578,7 @@ section {
   pointer-events: none;
   transform: translate(-50%, -50%);
   transition: .2s;
-  z-index: 999
+  z-index: 99999999;
 }
 
 .dark .cursor2 {
