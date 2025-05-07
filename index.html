@@ -194,7 +194,7 @@
             </label>
           </div>
           <div class="header__button">
-            <a class="wc-btn wc-btn-underline" href="contact.html">Get started<i
+            <a class="wc-btn wc-btn-underline" href="#contact">Get started<i
                 class="fa-solid fa-arrow-right-long"></i></a>
           </div>
         </div>
@@ -225,7 +225,7 @@
                 <div class="section-content">
                   <div class="meta-text has_fade_anim" data-fade-from="top" data-ease="bounce" data-fade-offset="150"
                     data-duration="2" data-delay="0.15">
-                    <a href="contact.html" class="wc-btn wc-btn-underline"><span class=>Poe
+                    <a href="#contact" class="wc-btn wc-btn-underline"><span class=>Poe
                         International<sup>TM</sup></span> <i class="fa-solid fa-arrow-right-long"></i></a>
                     <p class="address">House D4 Sahara Dabo Estate, <br>
                       Abuja, Nigeria</p>
@@ -931,6 +931,77 @@
       </section>
       <!-- blog area end  -->
 
+      <!-- contact area start  -->
+      <section class="contact-area" id="contact">
+        <div class="container">
+          <div class="contact-area-inner section-spacing">
+            <div class="section-content">
+              <div class="subtitle-wrapper">
+                <span class="section-subtitle">07. Contact Us</span>
+              </div>
+              <div class="content-last">
+                <div class="section-title-wrapper">
+                  <div class="title-wrapper">
+                    <h2 class="section-title has_text_move_anim" data-fade-from="bottom">We've Been Waiting For You</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="section-content">
+              <div class="info-box has_fade_anim">
+                <div class="text-wrapper">
+                  <p class="text">We want to hear from you. let’s
+                    us know how we can help!</p>
+                </div>
+                <ul class="contact-list">
+                  <li><a href="tel:+2348163345924">+234 816 334 5924</a></li>
+                  <li><a href="#">info@poeinternational.com</a></li>
+                  <li>House D4 Sahara Dabo Estate, <br />
+                    Abuja, Nigeria</li>
+                </ul>
+              </div>
+              <div class="contact-wrap has_fade_anim" data-delay="0.30">
+                <form id="contactForm">
+                  <div class="contact-formwrap">
+                    <div class="contact-formfield">
+                      <input type="text" name="Name" id="Name" placeholder="Name*">
+                    </div>
+                    <div class="contact-formfield">
+                      <input type="text" name="Email" id="Email" placeholder="Email*">
+                    </div>
+                    <div class="contact-formfield">
+                      <select name="mainService" id="mainService" required>
+                        <option value="">-- Select Main Service --</option>
+                        <option value="Branding and Digital Communication">Branding and Digital Communication</option>
+                        <option value="Event Branding/Management">Event Branding/Management</option>
+                        <option value="Multimedia">Multimedia</option>
+                        <option value="Digital Management">Digital Management</option>
+                        <option value="Print">Print</option>
+                        <option value="Application Development">Application Development</option>
+                        <option value="Trainings">Trainings</option>
+                      </select>
+                    </div>
+
+                    <div class="contact-formfield">
+                      <select name="subService" id="subService" required>
+                        <option value="">-- Select Sub-Service --</option>
+                      </select>
+                    </div>
+                    <div class="contact-formfield messages">
+                      <textarea type="text" name="Message" id="Message" placeholder="Message*"></textarea>
+                    </div>
+                  </div>
+                  <div class="submit-btn">
+                    <button type="submit" class="wc-btn wc-btn-primary btn-text-flip"><span
+                        data-text="Send Message">Send Message</span></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- contact area end  -->
       </main>
 
       <!-- footer area start  -->
@@ -969,13 +1040,15 @@
                 </ul>
               </div>
               <div class="footer-widget-wrapper newsletter">
-                <form action="#" class="subscribe-form">
+                <form action="subscribe.php" method="POST" class="subscribe-form" id="subscribeForm">
                   <div class="input-field">
-                    <input type="email" placeholder="Enter your email">
-                    <button type="submit" class="subscribe-btn"><img src="assets/imgs/icon/arrow-light.webp"
-                        alt="icon"></button>
+                    <input type="email" name="email" id="email" placeholder="Enter your email" required>
+                    <button type="submit" class="subscribe-btn">
+                      <img src="assets/imgs/icon/arrow-light.webp" alt="icon">
+                    </button>
                   </div>
                 </form>
+                <div id="subscribe-message"></div>
               </div>
             </div>
           </div>
@@ -1017,6 +1090,26 @@
   <script src="assets/js/offcanvas.js"></script>
 
   <script>
+    // Optional: Configure ScrollTrigger to respond correctly to events
+    ScrollTrigger.config({
+      autoRefreshEvents: "DOMContentLoaded,load,resize"
+    });
+
+    // Optional: If you're using ScrollToPlugin for smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener("click", function (e) {
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+          e.preventDefault();
+          gsap.to(window, {
+            duration: 1,
+            scrollTo: target,
+            ease: "power2.out"
+          });
+        }
+      });
+    });
+
 
     // text slider 
     if ('.text-slider-active') {
@@ -1032,36 +1125,160 @@
       });
     }
 
-    // Testimonial
-    if ('.b-testimonial-active') {
-      var bTestiononial = new Swiper(".b-testimonial-active", {
-        loop: true,
-        slidesPerView: 1,
-        spaceBetween: 30,
-        autoplay: true,
-        effect: 'fade',
-        fadeEffect: {
-          crossFade: true
-        },
-        pagination: {
-          el: '.b-ts-pagination',
-          type: 'fraction',
-          formatFractionCurrent: function (number) {
-            return ('0' + number).slice(-2);
-          },
-          formatFractionTotal: function (number) {
-            return ('0' + number).slice(-2);
-          },
-          renderFraction: function (currentClass, totalClass) {
-            return '<span class="' + currentClass + '"></span>' +
-              ' <span class="dash"></span> ' +
-              '<span class="' + totalClass + '"></span>';
+    // Initialize Swiper
+    const swiper = new Swiper('.testimonial-slider', {
+      loop: true,
+      autoplay: {
+        delay: 5000,
+      },
+      navigation: {
+        nextEl: '.testimonial-button-next',
+        prevEl: '.testimonial-button-prev',
+      },
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true,
+      },
+      spaceBetween: 30,
+      slidesPerView: 1,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+
+    document.getElementById('contactForm').addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && e.target.nodeName !== 'TEXTAREA') {
+        e.preventDefault();
+      }
+
+      const form = document.getElementById('contactForm');
+      const focusable = Array.from(
+        form.querySelectorAll('input, textarea, select, button')
+      ).filter(el => !el.disabled && el.type !== 'hidden');
+
+      form.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' && e.target.nodeName !== 'TEXTAREA') {
+          e.preventDefault();
+          const index = focusable.indexOf(e.target);
+          if (index > -1 && index < focusable.length - 1) {
+            focusable[index + 1].focus();
           }
         }
       });
-    }
+    });
 
+    const subServices = {
+      branding: [
+        "Corporate Branding",
+        "Brand Identity Development",
+        "Brand Positioning & Messaging",
+        "Marketing & Communication Strategy",
+        "Employee Branding",
+        "Brand Reputation Management",
+        "Personal Brand Development",
+        "Media Relations",
+        "Social Media Management",
+        "Crisis Communication",
+        "Public Speaking & Event Participation"
+      ],
+      event: [
+        "Event Strategy & Development",
+        "Logistics & Planning",
+        "Marketing & Promotion",
+        "On-Site Management",
+        "Post-Event Evaluation"
+      ],
+      multimedia: [
+        "Streaming Services",
+        "Live Streaming Setup",
+        "Content Production & Direction",
+        "Live Event Management",
+        "Post-Production Services",
+        "TV Commercials",
+        "Jingle and Voiceovers",
+        "Animations",
+        "Photography"
+      ],
+      digital: [
+        "SEO",
+        "PPC Advertising",
+        "Content Marketing",
+        "Social Media Marketing",
+        "Email Marketing",
+        "Marketing Automation",
+        "Content Creation",
+        "Content Strategy",
+        "Video Production",
+        "Graphic Design"
+      ],
+      print: [
+        "Print Media Design & Layout",
+        "Copywriting & Editing",
+        "Printing & Production",
+        "Distribution Strategy",
+        "Environmental Branding"
+      ],
+      application: [
+        "Website Design & Planning",
+        "Website Development",
+        "Content Management",
+        "SEO",
+        "Product Design",
+        "Prototyping",
+        "Product Launch"
+      ],
+      training: [
+        "Staff Brand Development",
+        "Employee Engagement",
+        "Employer Branding Strategy",
+        "Internal Communications Training",
+        "Customer Service Training",
+        "Brand Identity Evaluation",
+        "Competitive Brand Analysis",
+        "Customer Perception Survey"
+      ]
+    };
 
+    document.getElementById("mainService").addEventListener("change", function () {
+      const subSelect = document.getElementById("subService");
+      const selected = this.value;
+      subSelect.innerHTML = '<option value="">-- Select Sub-Service --</option>';
+
+      if (selected && subServices[selected]) {
+        subServices[selected].forEach(sub => {
+          const opt = document.createElement("option");
+          opt.value = sub;
+          opt.textContent = sub;
+          subSelect.appendChild(opt);
+        });
+      }
+    });
+
+    document.getElementById("subscribeForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const formData = new FormData();
+      formData.append("email", email);
+
+      fetch("http://localhost:8000/subscribe.php", {
+        method: "POST",
+        body: formData
+      })
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById("subscribe-message").innerText = data;
+          document.getElementById("subscribe-message").style.color = "green";
+          document.getElementById("email").value = "";
+        })
+        .catch(error => {
+          document.getElementById("subscribe-message").innerText = "Something went wrong. Please try again.";
+          document.getElementById("subscribe-message").style.color = "red";
+
+          console.error("Error:", error);
+        });
+    });
   </script>
 
 </body>

@@ -3,7 +3,7 @@
   const checkbox = e("#input");
   let t = document.querySelector("header");
   window.addEventListener("scroll", () => {
-    window.scrollY > 500
+    window.scrollY >= 0
       ? t.classList.add("sticky")
       : t.classList.remove("sticky");
   });
