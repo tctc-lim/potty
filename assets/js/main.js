@@ -262,6 +262,7 @@ document
   .getElementById("subscribeForm")
   .addEventListener("submit", function (e) {
     e.preventDefault();
+    document.getElementById("subscribe-message").innerText = "Subscribing...";
 
     const email = document.getElementById("email").value;
     const formData = new FormData();

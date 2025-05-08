@@ -9984,7 +9984,7 @@ section {
   line-height: 1.33;
   font-weight: 500;
   color: var(--primary);
-  font-family: var(--font_kanit);
+  font-family: var(--font_beatricetrial);
 }
 
 .dark .testimonial-item .text, .dark .testimonial-item .name {
@@ -10327,10 +10327,6 @@ section {
   margin-top: 16px;
   height: 158px;
   border-bottom: 1px solid var(--border)
-}
-
-.blog .title a:hover {
-  color: var(--white) !important;
 }
 
 .dark .blog .title {

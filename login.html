@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/png" href="assets/imgs/logo/favicon.png" sizes="16x16">
+
+    <!-- All CSS files -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/progressbar.css">
+    <link rel="stylesheet" href="assets/css/meanmenu.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/master-design-studio.css">
+    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/mediaquery.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="image-container">
+            <img src="assets/imgs/logo/login.gif" alt="login-image" class="login-image" width="170px">
+        </div>
+        <div class="form-container">
+            <form class="form" onsubmit="login(event)">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" placeholder="">
+                    <span class="error-text" id="emailError"></span>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="">
+                    <span class="error-text" id="passwordError"></span>
+                </div>
+                <div class="loader" id="loader"></div>
+                <button class="sign">Sign in</button>
+                <p id="message" style="text-align: center; width: 100%; position: relative; left: 17px"></p>
+            </form>
+        </div>
+    </div>
+    <script src="assets/js/login.js"></script>
+
+</body>
+
+</html>

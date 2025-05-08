@@ -395,7 +395,7 @@
                         </div>
                         <div class="btn-wrapper btn-move has_fade_anim" data-fade-from="top" data-fade-offset="50"
                           data-ease="bounce">
-                          <a class=" wc-btn wc-btn-circle btn-hover-bgchange btn-item" href="#">Get Started</a>
+                          <a class=" wc-btn wc-btn-circle btn-hover-bgchange btn-item" href="#contact">Get Started</a>
                         </div>
                       </div>
                     </div>
@@ -469,7 +469,7 @@
                     </div>
                     <div class="info-area">
                       <div class="btn-wrapper btn-move has_fade_anim" data-ease="bounce">
-                        <a href="services.html" class="wc-btn wc-btn-circle btn-hover-bgchange btn-item">Explore all
+                        <a href="#contact" class="wc-btn wc-btn-circle btn-hover-bgchange btn-item">Book our
                           <br>
                           services</a>
                       </div>
@@ -501,7 +501,7 @@
                 </div>
                 <div class="works-wrapper-box">
                   <div class="works-wrapper">
-                    <a href="work-details.html">
+                    <a href="projects.html">
                       <div class="work-box">
                         <div class="thumb">
                           <img src="assets/imgs/projects/project1.jpg" alt="work image">
@@ -514,7 +514,7 @@
                         </div>
                       </div>
                     </a>
-                    <a href="work-details.html">
+                    <a href="projects.html">
                       <div class="work-box">
                         <div class="thumb">
                           <img src="assets/imgs/projects/project2.jpg" alt="work image">
@@ -527,7 +527,7 @@
                         </div>
                       </div>
                     </a>
-                    <a class="large" href="work-details.html">
+                    <a class="large" href="projects.html">
                       <div class="work-box">
                         <div class="thumb">
                           <img src="assets/imgs/projects/project3.jpg" alt="work image">
@@ -540,7 +540,7 @@
                         </div>
                       </div>
                     </a>
-                    <a href="work-details.html">
+                    <a href="projects.html">
                       <div class="work-box">
                         <div class="thumb">
                           <img src="assets/imgs/projects/project4.jpeg" alt="work image">
@@ -553,7 +553,7 @@
                         </div>
                       </div>
                     </a>
-                    <a href="work-details.html">
+                    <a href="projects.html">
                       <div class="work-box">
                         <div class="thumb">
                           <img src="assets/imgs/projects/project5.jpg" alt="work image">
@@ -719,10 +719,6 @@
           <section class="award-area" id="awards">
             <div class="container">
               <div class="award-area-inner section-spacing">
-                <div class="shape-1">
-                  <img class="show-light" src="assets/imgs/shape/img-s-35.webp" alt="shape">
-                  <img class="show-dark" src="assets/imgs/shape/img-s-35-dark.webp" alt="shape">
-                </div>
                 <div class="section-content">
                   <div class="subtitle-wrapper">
                     <span class="section-subtitle">05. achievement <br>
@@ -787,17 +783,6 @@
                         </div>
                       </a>
                     </div>
-                    <div class="team-box has_fade_anim" data-fade-from="bottom" data-delay="0.30">
-                      <a href="team-details.html">
-                        <div class="thumb">
-                          <img src="assets/imgs/team/michael.png" alt="team icon">
-                        </div>
-                        <div class="content">
-                          <h3 class="title">Michael</h3>
-                          <p class="text">Business Strategist</p>
-                        </div>
-                      </a>
-                    </div>
                     <div class="team-box has_fade_anim" data-fade-from="bottom" data-delay="0.45">
                       <a href="team-details.html">
                         <div class="thumb">
@@ -806,17 +791,6 @@
                         <div class="content">
                           <h3 class="title">Sharon</h3>
                           <p class="text">Admin</p>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="team-box has_fade_anim" data-fade-from="bottom" data-delay="0.15">
-                      <a href="team-details.html">
-                        <div class="thumb">
-                          <img src="assets/imgs/team/miracle.png" alt="team icon">
-                        </div>
-                        <div class="content">
-                          <h3 class="title">Miracle</h3>
-                          <p class="text">Creative Director</p>
                         </div>
                       </a>
                     </div>
@@ -994,6 +968,7 @@
                   <div class="submit-btn">
                     <button type="submit" class="wc-btn wc-btn-primary btn-text-flip"><span
                         data-text="Send Message">Send Message</span></button>
+                    <p id="contact-status" style="margin-top: 16px;"></p>
                   </div>
                 </form>
               </div>
@@ -1232,6 +1207,54 @@
           }
         }
       });
+    });
+
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      const status = document.getElementById('contact-status');
+      status.innerText = 'Sending...';
+      e.preventDefault();
+
+      const form = e.target;
+
+      const formData = {
+        Name: form.Name.value.trim(),
+        Email: form.Email.value.trim(),
+        mainService: form.mainService.value,
+        subService: form.subService.value,
+        Message: form.Message.value.trim()
+      };
+
+      // Basic validation (optional, extend as needed)
+      if (!formData.Name || !formData.Email || !formData.mainService || !formData.subService || !formData.Message) {
+        alert('Please fill in all required fields.');
+        return;
+      }
+
+      // Send the data via POST (update the URL to your actual endpoint)
+      fetch('http://localhost:8000/contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+        .then(response => {
+          if (response.ok) {
+            status.innerText = 'Thank you for your message! We will get back to you soon.';
+            status.style.color = 'green';
+            setTimeout(() => {
+              form.reset();
+            }, 1500);
+          } else {
+            status.innerText = 'There was an error sending your message. Please try again.';
+            status.style.color = 'red';
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          status.innerText = 'There was an error sending your message. Please try again.';
+          status.style.color = 'red';
+        });
     });
 
     // Refresh ScrollTrigger after all content is loaded
