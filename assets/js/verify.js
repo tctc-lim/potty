@@ -1,4 +1,4 @@
-const BASE_URL = "https://mylovesense.online"; // Adjust for your setup
+const BASE_URL = "http://localhost:8000"; // Adjust for your setup
 
 document.addEventListener("DOMContentLoaded", async function () {
     const userData = localStorage.getItem("user");
@@ -26,7 +26,7 @@ async function checkLogin() {
         return;
     }
 
-    if (user && user.role !== "admin" && usertab) {
+    if (user && user.role !== "Admin" && usertab) {
         usertab.style.display = "none";
     }
 
@@ -96,5 +96,4 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", async function () {
     await checkLogin()
     setupNavigation(); // Setup navigation events
-    setupEventListeners(); // Setup general event listeners
 });

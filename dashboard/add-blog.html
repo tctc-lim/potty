@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.6">
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
     <title>Add Blog</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/mediaquery.css">
-    <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
-    <link rel="icon" type="image/png" href="../images/logos/fvico3.png">
-    <script src="../js/verify.js"></script>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/mediaquery.css">
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="icon" type="image/png" href="../assets/imgs/logo/favicon.png">
+    <script src="../assets/js/verify.js"></script>
     <script src="https://cdn.tiny.cloud/1/uhe3odlme9v44d3l3usxdv9qizug88pw3tgvum72ns5dr0el/tinymce/7/tinymce.min.js"
         referrerpolicy="origin"></script>
 
@@ -60,7 +60,7 @@
     </div>
     <div id="dashboard">
         <div class="top-bar">
-            <img src="../images/logos/logo2.png" alt="logo" class="logo" width="150px">
+            <img src="../assets/imgs/logo/logo-purple.png" alt="logo" class="logo" width="200px">
             <h1 class="user">Welcome, <p id="loggedinuser"></p>
             </h1>
         </div>
@@ -72,11 +72,6 @@
                 <div class="input-div">
                     <label for="blogtitle">Blog Title:</label>
                     <input type="text" id="blogtitle" name="title" placeholder="Blog Title" required>
-                </div>
-
-                <div class="input-div">
-                    <label for="read-time">Estimated Read Time:</label>
-                    <input type="text" name="read-time" id="read-time" placeholder="e.g 3 MIN READ" required>
                 </div>
 
                 <div class="image-div">
@@ -105,6 +100,15 @@
                 <div class="blog-content-div">
                     <label for="content2">Second Blog Content:</label>
                     <textarea name="content2" id="content2">Start your blog here!</textarea>
+                </div>
+
+                <div class="image-div">
+                    <label for="image3">Add Second Image:</label>
+                    <input type="file" name="image3" id="image3" accept="image/*">
+                </div>
+
+                <div class="preview-container">
+                    <div class="preview" id="preview3">No Image</div>
                 </div>
 
                 <div class="tag-div">
@@ -172,6 +176,10 @@
             previewImage(this, "preview2");
         });
 
+        document.getElementById("image3").addEventListener("change", function () {
+            previewImage(this, "preview3");
+        });
+
         document.getElementById("blogForm").addEventListener("submit", async (e) => {
             status.innerHTML = "Loading"
             e.preventDefault(); // Stop form submission
@@ -182,7 +190,7 @@
             let formData = new FormData(e.target);
 
             try {
-                let response = await fetch("https://mylovesense.online/backend/blogs/add_blog.php", {
+                let response = await fetch("http://localhost:8000/backend/blogs/add_blog.php", {
                     method: "POST",
                     body: formData,
                     headers: {

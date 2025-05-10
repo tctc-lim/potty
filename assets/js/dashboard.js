@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const userData = localStorage.getItem("user");
     const user = userData ? JSON.parse(userData) : null; // ✅ Prevent errors if user data is missing
+    
 
     try {
         // ✅ Fetch blog data
@@ -28,7 +29,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             blogCards[2].textContent = completedBlogs;
         }
 
-        if (user && user.role === "admin") {
+        if (user && user.role === "Admin") {
             // ✅ Fetch registered users
             const userResponse = await fetch(`${BASE_URL}/backend/users/read_users.php`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -53,19 +54,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (userCard) userCard.style.display = "none";
         }
 
-        const userResponse = await fetch(`${BASE_URL}/backend/users/read_users.php`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        });
 
-        const userDataResponse = await userResponse.json();
-        const users = userDataResponse.users || [];
-
-        // ✅ Ensure the element exists before setting text
-        const loggedInUserElement = document.getElementById("loggedinuser");
-        if (loggedInUserElement) {
-            loggedInUserElement.textContent = user.name;
-        }
-        
         // ✅ Fetch recent activities
         const activityResponse = await fetch(`${BASE_URL}/backend/users/users_activities.php`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -92,44 +81,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     } catch (error) {
         console.error("Error fetching dashboard data:", error);
-    }
-
-    try {
-        const response = await fetch(`${BASE_URL}/backend/blogs/recent_blogs.php`);
-        const data = await response.json();
-
-        const recentBlogs = data.recent_blogs;
-        const blogTable = document.querySelector("#recent-blogs-table tbody");
-
-        if (!recentBlogs || recentBlogs.length === 0) {
-            blogTable.innerHTML = "<tr><td colspan='3'>No recent blogs found.</td></tr>";
-            return;
-        }
-
-        blogTable.innerHTML = ""; // Clear existing rows
-
-        recentBlogs.forEach((blog, index) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${blog.title}</td>
-                <td>${new Date(blog.created_at).toLocaleString()}</td>
-                <td class="recent-status">${blog.status}</td>
-            `;
-            blogTable.appendChild(row);
-        });
-
-        // ✅ Select all elements with class "recent-status"
-        document.querySelectorAll(".recent-status").forEach(statusCell => {
-            if (statusCell.textContent.trim() === "PENDING") {
-                statusCell.style.backgroundColor = "yellow";
-            } else {
-                statusCell.style.backgroundColor = "green";
-                statusCell.style.color = "white";
-            }
-        })
-    } catch (error) {
-        blogTable.innerHTML = `<tr><td colspan='3'>${error}</td></tr>`;
     }
 });
 
@@ -175,7 +126,7 @@ async function checkLogin() {
         return;
     }
 
-    if (user && user.role !== "admin" && usertab) {
+    if (user && user.role !== "Admin" && usertab) {
         usertab.style.display = "none";
     }
 
@@ -206,3 +157,5 @@ function setupEventListeners() {
             window.location.href = "../login.html";
         });
 }
+
+

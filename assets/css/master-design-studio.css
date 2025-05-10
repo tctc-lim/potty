@@ -6627,7 +6627,7 @@ section {
   bottom: 25px;
   width: 0%;
   height: 2px;
-  background-color: var(--primary2);
+  background-color: var(--white);
   transition: width 0.3s ease-in-out;
 }
 

@@ -2,7 +2,7 @@
 require "../auth/db.php";
 require "../auth/auth_middleware.php";
 
-header("Access-Control-Allow-Origin: https://mylovesense.online");
+header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'] ?? null;
     $email = $_POST['email'] ?? null;
     $password = $_POST['password'] ?? null;
-    $role = $_POST['role'] ?? 'blog_poster'; // Default role
+    $role = $_POST['role'] ?? 'Blog_poster'; // Default role
 
     if (!$name || !$email || !$password) {
         echo json_encode(["error" => "All fields are required."]);

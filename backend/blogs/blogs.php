@@ -1,11 +1,10 @@
 <?php
-// Include necessary files and dependencies
 require "../auth/db.php";
-require_once "../../vendor/autoload.php";  // Ensure proper path to vendor
-require_once "../auth/auth_middleware.php"; // Include the middleware for token validation
+require_once "../../vendor/autoload.php";
+require_once "../auth/auth_middleware.php";
 
-// Your secret key to sign the JWT tokens (keep this secret and stored securely)
-$secretKey = "admin@poeintl1224";  // Ensure this key is consistent with the one in auth_middleware.php
+
+$secretKey = "admin@poeintl1224";
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
@@ -22,13 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     exit();
 }
 
-// Handle GET request (Fetch blogs with pagination or a single blog by ID)
+
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    // Fetch all blogs with pagination
     if (!isset($_GET["id"])) {
-        // Pagination parameters
         $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
-        $limit = 7;  // Number of blogs per page
+        $limit = 7;
         $offset = ($page - 1) * $limit;
 
         try {
@@ -38,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             $totalPages = ceil($totalBlogs / $limit);
 
             // Fetch the blogs
-            $stmt = $conn->prepare("SELECT id, title, read_time, image1, content1, image2, content2, tag1, tag2, tag3, status, created_at 
+            $stmt = $conn->prepare("SELECT id, title, image1, content1, image2, content2, image3, tag1, tag2, tag3, status, created_at 
                                     FROM blogs 
                                     ORDER BY id ASC 
                                     LIMIT :limit OFFSET :offset");
@@ -69,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
         try {
             // Fetch the specific blog
-            $stmt = $conn->prepare("SELECT id, title, read_time, image1, content1, image2, content2, tag1, tag2, tag3, status, created_at 
+            $stmt = $conn->prepare("SELECT id, title, image1, content1, image2, content2, image3, tag1, tag2, tag3, status, created_at 
                                     FROM blogs 
                                     WHERE id = :id");
             $stmt->bindParam(":id", $blogId, PDO::PARAM_INT);
@@ -100,7 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
     $headers = getallheaders();
     $authHeader = $headers["Authorization"] ?? "";
     $token = str_replace("Bearer ", "", $authHeader);
-    $secretKey = "admin@lovesense2488";
+    $secretKey = "admin@poeintl1224";
 
     // Decode token
     try {
@@ -167,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
         $headers = getallheaders();
         $authHeader = $headers["Authorization"] ?? "";
         $token = str_replace("Bearer ", "", $authHeader);
-        $secretKey = "admin@lovesense2488";
+        $secretKey = "admin@poeintl1224";
 
         // Decode token
         try {
@@ -187,7 +184,6 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
 
         $blogId = $inputData["id"];
         $title = $inputData["title"] ?? null;
-        $readTime = $inputData["read_time"] ?? null;
         $content1 = $inputData["content1"] ?? null;
         $content2 = $inputData["content2"] ?? null;
         $tag1 = $inputData["tag1"] ?? null;
@@ -200,9 +196,9 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
             exit();
         }
 
-        $stmt = $conn->prepare("UPDATE blogs SET title = ?, read_time = ?, content1 = ?, content2 = ?, tag1 = ?, tag2 = ?, tag3 = ?, status = ? WHERE id = ?");
+        $stmt = $conn->prepare("UPDATE blogs SET title = ?, content1 = ?, content2 = ?, tag1 = ?, tag2 = ?, tag3 = ?, status = ? WHERE id = ?");
         $stmt->execute([
-            $title, $readTime, $content1, $content2, $tag1, $tag2, $tag3, $status, $blogId
+            $title, $content1, $content2, $tag1, $tag2, $tag3, $status, $blogId
         ]);
 
         // Log the update action

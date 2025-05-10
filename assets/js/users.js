@@ -8,7 +8,7 @@ function verifyUser() {
     const user = JSON.parse(localStorage.getItem("user"));
 
     // Check if the role is not "admin"
-    if (user && user.role !== "admin") {
+    if (user && user.role !== "Admin") {
         window.location.href = "index.html";
     }
 }
@@ -47,9 +47,9 @@ async function fetchUsers() {
         const users = usersData.users;
 
         setTimeout(() => {
-        table.innerHTML = "";
-        users.forEach((user, index) => {
-        table.innerHTML += `
+            table.innerHTML = "";
+            users.forEach((user, index) => {
+                table.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
                 <td>${user.name}</td>
@@ -61,7 +61,7 @@ async function fetchUsers() {
                 </td>
             </tr>
         `;
-        });
+            });
         }, 600);
 
     } catch (error) {
@@ -98,14 +98,19 @@ async function deleteUser(id) {
 
 // ✅ Add User
 async function addUser(event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
+    const form = document.getElementById("addUserForm");
+    if (!form) {
+        console.error("Form not found");
+        return;
+    }
+
+    const formData = new FormData(form);
     const status = document.getElementById("status-bar")
     status.innerHTML = "Loading ...."
 
     try {
         const response = await fetch(
-            `${BASE_URL}/backend/users/create_user.php?action=register`,
+            `http://localhost:8000/backend/users/create_user.php?action=register`,
             {
                 method: "POST",
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -119,8 +124,10 @@ async function addUser(event) {
         status.innerHTML = "Successfully added user";
         status.style.color = "green"
 
-        await fetchUsers();
-        closeUserModal();
+        setTimeout(() => {
+                fetchUsers();
+            closeUserModal();
+        }, 2000);
     } catch (error) {
         status.innerHTML = error;
         status.style.color = "red"

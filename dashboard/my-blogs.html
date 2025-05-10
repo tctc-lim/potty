@@ -3,28 +3,27 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.6" />
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Read Blogs</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/mediaquery.css">
-    <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
-    <script src="../js/verify.js"></script>
-    <script src="https://cdn.tiny.cloud/1/uhe3odlme9v44d3l3usxdv9qizug88pw3tgvum72ns5dr0el/tinymce/7/tinymce.min.js"
-    referrerpolicy="origin"></script>
-    <link rel="icon" type="image/png" href="../images/logos/fvico3.png">
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/mediaquery.css">
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <script src="../assets/js/verify.js"></script>
+    <script src="https://cdn.tiny.cloud/1/uhe3odlme9v44d3l3usxdv9qizug88pw3tgvum72ns5dr0el/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="icon" type="image/png" href="../assets/imgs/logo/favicon.png">
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        tinymce.init({
-            selector: "textarea",
-            plugins: "link image table lists",
-            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright | image link",
-            automatic_uploads: true,
-            file_picker_types: "image",
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            tinymce.init({
+                selector: "textarea",
+                plugins: "link image table lists",
+                toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright | image link",
+                automatic_uploads: true,
+                file_picker_types: "image",
+            });
         });
-    });
-</script>
+    </script>
 </head>
 
 <body>
@@ -61,18 +60,30 @@
     </div>
     <div id="dashboard">
         <div class="top-bar">
-            <img src="../images/logos/logo2.png" alt="logo" class="logo" width="150px">
+            <img src="../assets/imgs/logo/logo-purple.png" alt="logo" class="logo" width="200px">
             <h1 class="user">Welcome,<p id="loggedinuser"></p>
         </div>
         <div class="bottom-bar">
             <div class="blog-container">
                 <div class="user-bar">
-                    <p>My Blog</p>
+                    <p>My Blogs</p>
                 </div>
-                <div id="blogTable"><p class="loader">Loading...</p></div>
-                <div id="paginationControls"></div> <!-- Pagination Here -->
+                <div>
+                    <div class="blog-area section-style section-item">
+                        <div class="container large">
+                            <div class="blogs-wrapper-box">
+                                <div class="blogs-wrapper" id="blogTable">
+                                    <p class="loader">Loading...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="paginationControls">
             </div>
         </div>
+    </div>
     </div>
 
     <!-- Delete Confirmation Modal -->
@@ -86,7 +97,7 @@
         </div>
     </div>
 
-    <script src="../js/blogs.js"></script>
+    <script src="../assets/js/blogs.js"></script>
 </body>
 
 </html>

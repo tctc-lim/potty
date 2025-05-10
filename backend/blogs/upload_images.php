@@ -5,7 +5,7 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 // ✅ Allow CORS for frontend requests
-header("Access-Control-Allow-Origin: https://mylovesense.online");
+header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
@@ -59,13 +59,13 @@ if (!$id) {
 }
 
 // ✅ Handle image upload
-$uploadDir = "uploads/";
+$uploadDir = "../../assets/imgs/";
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 
 $imagePaths = [];
-for ($i = 1; $i <= 2; $i++) {
+for ($i = 1; $i <= 3; $i++) {
     $imageKey = "image$i";
     if (!isset($_FILES[$imageKey]) || $_FILES[$imageKey]["error"] !== UPLOAD_ERR_OK) {
         continue;

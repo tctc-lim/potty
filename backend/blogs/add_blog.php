@@ -7,7 +7,7 @@ use Firebase\JWT\Key;
 session_start();
 
 // ✅ Allow CORS for frontend requests
-header("Access-Control-Allow-Origin: http://127.0.0.1:5500/");
+header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
@@ -34,7 +34,7 @@ if (!$authHeader || !str_starts_with($authHeader, "Bearer ")) {
 }
 
 $token = str_replace("Bearer ", "", $authHeader);
-$secretKey = "admin@poeintl1224"; // Use the same secret key from login
+$secretKey = "admin@poeintl1224";
 
 try {
     // ✅ Decode Token
@@ -74,7 +74,7 @@ if (!file_exists($uploadDir)) {
 }
 
 $imagePaths = [];
-for ($i = 1; $i <= 3; $i++) { // Now we are uploading 3 images
+for ($i = 1; $i <= 3; $i++) {
     $imageKey = "image$i";
     if (isset($_FILES[$imageKey]) && $_FILES[$imageKey]["error"] === UPLOAD_ERR_OK) {
         $imageName = time() . "_" . basename($_FILES[$imageKey]["name"]);
