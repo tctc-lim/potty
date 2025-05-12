@@ -7,10 +7,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const userData = localStorage.getItem("user");
     const user = userData ? JSON.parse(userData) : null; // ✅ Prevent errors if user data is missing
-<<<<<<< HEAD
-    
-=======
->>>>>>> ff70d7d (first commit from local)
 
     try {
         // ✅ Fetch blog data
@@ -32,11 +28,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             blogCards[2].textContent = completedBlogs;
         }
 
-<<<<<<< HEAD
-        if (user && user.role === "Admin") {
-=======
         if (user && user.role === "admin") {
->>>>>>> ff70d7d (first commit from local)
             // ✅ Fetch registered users
             const userResponse = await fetch(`${BASE_URL}/backend/users/read_users.php`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -61,9 +53,6 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (userCard) userCard.style.display = "none";
         }
 
-<<<<<<< HEAD
-
-=======
         const userResponse = await fetch(`${BASE_URL}/backend/users/read_users.php`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
@@ -76,8 +65,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (loggedInUserElement) {
             loggedInUserElement.textContent = user.name;
         }
-        
->>>>>>> ff70d7d (first commit from local)
+
         // ✅ Fetch recent activities
         const activityResponse = await fetch(`${BASE_URL}/backend/users/users_activities.php`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -105,8 +93,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     } catch (error) {
         console.error("Error fetching dashboard data:", error);
     }
-<<<<<<< HEAD
-=======
 
     try {
         const response = await fetch(`${BASE_URL}/backend/blogs/recent_blogs.php`);
@@ -145,7 +131,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     } catch (error) {
         blogTable.innerHTML = `<tr><td colspan='3'>${error}</td></tr>`;
     }
->>>>>>> ff70d7d (first commit from local)
 });
 
 // ✅ Navigation & Active Link Handling
@@ -190,11 +175,7 @@ async function checkLogin() {
         return;
     }
 
-<<<<<<< HEAD
-    if (user && user.role !== "Admin" && usertab) {
-=======
     if (user && user.role !== "admin" && usertab) {
->>>>>>> ff70d7d (first commit from local)
         usertab.style.display = "none";
     }
 
@@ -225,8 +206,3 @@ function setupEventListeners() {
             window.location.href = "../login.html";
         });
 }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> ff70d7d (first commit from local)

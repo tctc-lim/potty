@@ -13,23 +13,23 @@
     (e(document).ready(function () {
       e("#container").addClass("loaded"),
         e("#container").hasClass("loaded") &&
-          e("#preloader")
-            .delay(1e3)
-            .queue(function () {
-              e(this).remove();
-            });
+        e("#preloader")
+          .delay(1e3)
+          .queue(function () {
+            e(this).remove();
+          });
     }),
-    gsap.registerPlugin(ScrollTrigger),
-    e(".image-popup").length &&
+      gsap.registerPlugin(ScrollTrigger),
+      e(".image-popup").length &&
       "magnificPopup" in jQuery &&
       e(".image-popup").magnificPopup({
         type: "image",
         gallery: { enabled: !0 },
       }),
-    e(".video-popup").length &&
+      e(".video-popup").length &&
       "magnificPopup" in jQuery &&
       e(".video-popup").magnificPopup({ type: "iframe" }),
-    o > 767 &&
+      o > 767 &&
       document.querySelector("#has_smooth").classList.contains("has-smooth") &&
       ScrollSmoother.create({
         smooth: 0.5,
@@ -38,7 +38,7 @@
         normalizeScroll: !0,
         ignoreMobileResize: !0,
       }),
-    "counterUp" in window)
+      "counterUp" in window)
   ) {
     let a = window.counterUp.default,
       i = (e) => {
@@ -47,7 +47,7 @@
           e.isIntersecting &&
             !t.classList.contains("is-visible") &&
             (a(t, { duration: 1500, delay: 16 }),
-            t.classList.add("is-visible"));
+              t.classList.add("is-visible"));
         });
       },
       n = new IntersectionObserver(i, { threshold: 1 }),
@@ -63,9 +63,9 @@
         ? c.classList.add("showed")
         : c.classList.remove("showed");
     }),
-    c.addEventListener("click", function () {
-      (document.body.scrollTop = 0), (document.documentElement.scrollTop = 0);
-    })),
+      c.addEventListener("click", function () {
+        (document.body.scrollTop = 0), (document.documentElement.scrollTop = 0);
+      })),
     e(".offcanvas__menu").meanmenu({
       meanScreenWidth: "5000",
       meanMenuContainer: ".offcanvas__menu-wrapper",
@@ -131,16 +131,16 @@
       },
     }),
     document.querySelector(".pin__elem") &&
-      o > 991 &&
-      gsap.utils.toArray(".pin__elem").forEach((e, t, o) => {
-        t !== o.length - 1 &&
-          ScrollTrigger.create({
-            trigger: e,
-            start: "top top",
-            pin: !0,
-            pinSpacing: !1,
-          });
-      }),
+    o > 991 &&
+    gsap.utils.toArray(".pin__elem").forEach((e, t, o) => {
+      t !== o.length - 1 &&
+        ScrollTrigger.create({
+          trigger: e,
+          start: "top top",
+          pin: !0,
+          pinSpacing: !1,
+        });
+    }),
     document.addEventListener("mousemove", function e(t) {
       try {
         t.target;
@@ -173,17 +173,17 @@
         (document.querySelector(".offcanvas-area").style.visibility =
           "visible");
     }),
-    g.addEventListener("click", function () {
-      (document.querySelector(".offcanvas-area").style.opacity = "0"),
-        (document.querySelector(".offcanvas-area").style.visibility = "hidden");
-    }));
+      g.addEventListener("click", function () {
+        (document.querySelector(".offcanvas-area").style.opacity = "0"),
+          (document.querySelector(".offcanvas-area").style.visibility = "hidden");
+      }));
   var y = e("#switcher_open").on("click", function () {
-      e(this).hide(),
-        e("#switcher_close").show(),
-        e(".switcher__icon").css("right", "280px"),
-        e(".switcher__items").css({ right: "0" }),
-        s.classList.add("show-overlay");
-    }),
+    e(this).hide(),
+      e("#switcher_close").show(),
+      e(".switcher__icon").css("right", "280px"),
+      e(".switcher__items").css({ right: "0" }),
+      s.classList.add("show-overlay");
+  }),
     v = e("#switcher_close").on("click", function () {
       e(this).hide(),
         e("#switcher_open").show(),
@@ -342,165 +342,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-<<<<<<< HEAD
-document.getElementById('contactForm').addEventListener('keydown', function (e) {
-  if (e.key === 'Enter' && e.target.nodeName !== 'TEXTAREA') {
-    e.preventDefault();
-  }
-
-  const form = document.getElementById('contactForm');
-  const focusable = Array.from(
-    form.querySelectorAll('input, textarea, select, button')
-  ).filter(el => !el.disabled && el.type !== 'hidden');
-
-  form.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' && e.target.nodeName !== 'TEXTAREA') {
-      e.preventDefault();
-      const index = focusable.indexOf(e.target);
-      if (index > -1 && index < focusable.length - 1) {
-        focusable[index + 1].focus();
-      }
-    }
-  });
-});
-
-document.getElementById('contactForm').addEventListener('submit', function (e) {
-  const status = document.getElementById('contact-status');
-  status.innerText = 'Sending...';
-  e.preventDefault();
-
-  const form = e.target;
-
-  const formData = {
-    Name: form.Name.value.trim(),
-    Email: form.Email.value.trim(),
-    mainService: form.mainService.value,
-    subService: form.subService.value,
-    Message: form.Message.value.trim()
-  };
-
-  // Basic validation (optional, extend as needed)
-  if (!formData.Name || !formData.Email || !formData.mainService || !formData.subService || !formData.Message) {
-    alert('Please fill in all required fields.');
-    return;
-  }
-
-  // Send the data via POST (update the URL to your actual endpoint)
-  fetch('http://localhost:8000/contact.php', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
-  })
-    .then(response => {
-      if (response.ok) {
-        status.innerText = 'Thank you for your message! We will get back to you soon.';
-        status.style.color = 'green';
-        setTimeout(() => {
-          form.reset();
-        }, 1500);
-      } else {
-        status.innerText = 'There was an error sending your message. Please try again.';
-        status.style.color = 'red';
-      }
-    })
-    .catch(error => {
-      console.error('Error:', error);
-      status.innerText = 'There was an error sending your message. Please try again.';
-      status.style.color = 'red';
-    });
-});
-
-const subServices = {
-  Branding_and_Digital_Communication: [
-    "Corporate Branding",
-    "Brand Identity Development",
-    "Brand Positioning & Messaging",
-    "Marketing & Communication Strategy",
-    "Employee Branding",
-    "Brand Reputation Management",
-    "Personal Brand Development",
-    "Media Relations",
-    "Social Media Management",
-    "Crisis Communication",
-    "Public Speaking & Event Participation"
-  ],
-  Event_Branding_and_Management: [
-    "Event Strategy & Development",
-    "Logistics & Planning",
-    "Marketing & Promotion",
-    "On-Site Management",
-    "Post-Event Evaluation"
-  ],
-  Multimedia: [
-    "Streaming Services",
-    "Live Streaming Setup",
-    "Content Production & Direction",
-    "Live Event Management",
-    "Post-Production Services",
-    "TV Commercials",
-    "Jingle and Voiceovers",
-    "Animations",
-    "Photography"
-  ],
-  Digital_Management: [
-    "SEO",
-    "PPC Advertising",
-    "Content Marketing",
-    "Social Media Marketing",
-    "Email Marketing",
-    "Marketing Automation",
-    "Content Creation",
-    "Content Strategy",
-    "Video Production",
-    "Graphic Design"
-  ],
-  Print: [
-    "Print Media Design & Layout",
-    "Copywriting & Editing",
-    "Printing & Production",
-    "Distribution Strategy",
-    "Environmental Branding"
-  ],
-  Application_Development: [
-    "Website Design & Planning",
-    "Website Development",
-    "Content Management",
-    "SEO",
-    "Product Design",
-    "Prototyping",
-    "Product Launch"
-  ],
-  Trainings: [
-    "Staff Brand Development",
-    "Employee Engagement",
-    "Employer Branding Strategy",
-    "Internal Communications Training",
-    "Customer Service Training",
-    "Brand Identity Evaluation",
-    "Competitive Brand Analysis",
-    "Customer Perception Survey"
-  ]
-};
-
-document.getElementById("mainService").addEventListener("change", function () {
-  const subSelect = document.getElementById("subService");
-  const selected = this.value;
-  subSelect.innerHTML = '<option value="">-- Select Sub-Service --</option>';
-
-  if (selected && subServices[selected]) {
-    subServices[selected].forEach(sub => {
-      const opt = document.createElement("option");
-      opt.value = sub;
-      opt.textContent = sub;
-      subSelect.appendChild(opt);
-    });
-  }
-});
-
-=======
->>>>>>> ff70d7d (first commit from local)
 // Always refresh ScrollTrigger after load
 window.addEventListener("load", () => {
   ScrollTrigger.refresh();

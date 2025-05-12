@@ -8,11 +8,7 @@ function verifyUser() {
     const user = JSON.parse(localStorage.getItem("user"));
 
     // Check if the role is not "admin"
-<<<<<<< HEAD
-    if (user && user.role !== "Admin") {
-=======
     if (user && user.role !== "admin") {
->>>>>>> ff70d7d (first commit from local)
         window.location.href = "index.html";
     }
 }
@@ -51,15 +47,9 @@ async function fetchUsers() {
         const users = usersData.users;
 
         setTimeout(() => {
-<<<<<<< HEAD
             table.innerHTML = "";
             users.forEach((user, index) => {
                 table.innerHTML += `
-=======
-        table.innerHTML = "";
-        users.forEach((user, index) => {
-        table.innerHTML += `
->>>>>>> ff70d7d (first commit from local)
             <tr>
                 <td>${index + 1}</td>
                 <td>${user.name}</td>
@@ -71,11 +61,7 @@ async function fetchUsers() {
                 </td>
             </tr>
         `;
-<<<<<<< HEAD
             });
-=======
-        });
->>>>>>> ff70d7d (first commit from local)
         }, 600);
 
     } catch (error) {
@@ -112,28 +98,14 @@ async function deleteUser(id) {
 
 // ✅ Add User
 async function addUser(event) {
-<<<<<<< HEAD
-    const form = document.getElementById("addUserForm");
-    if (!form) {
-        console.error("Form not found");
-        return;
-    }
-
-    const formData = new FormData(form);
-=======
     event.preventDefault();
     const formData = new FormData(event.target);
->>>>>>> ff70d7d (first commit from local)
     const status = document.getElementById("status-bar")
     status.innerHTML = "Loading ...."
 
     try {
         const response = await fetch(
-<<<<<<< HEAD
-            `http://localhost:8000/backend/users/create_user.php?action=register`,
-=======
             `${BASE_URL}/backend/users/create_user.php?action=register`,
->>>>>>> ff70d7d (first commit from local)
             {
                 method: "POST",
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -147,15 +119,8 @@ async function addUser(event) {
         status.innerHTML = "Successfully added user";
         status.style.color = "green"
 
-<<<<<<< HEAD
-        setTimeout(() => {
-                fetchUsers();
-            closeUserModal();
-        }, 2000);
-=======
         await fetchUsers();
         closeUserModal();
->>>>>>> ff70d7d (first commit from local)
     } catch (error) {
         status.innerHTML = error;
         status.style.color = "red"

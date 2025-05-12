@@ -1,12 +1,4 @@
 <?php
-<<<<<<< HEAD
-require "../auth/db.php";
-require_once "../../vendor/autoload.php";
-require_once "../auth/auth_middleware.php";
-
-
-$secretKey = "admin@poeintl1224";
-=======
 // Include necessary files and dependencies
 require "../auth/db.php";
 require_once "../../vendor/autoload.php";  // Ensure proper path to vendor
@@ -14,7 +6,6 @@ require_once "../auth/auth_middleware.php"; // Include the middleware for token 
 
 // Your secret key to sign the JWT tokens (keep this secret and stored securely)
 $secretKey = "admin@poeintl1224";  // Ensure this key is consistent with the one in auth_middleware.php
->>>>>>> ff70d7d (first commit from local)
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
@@ -31,13 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
     exit();
 }
 
-<<<<<<< HEAD
-
-if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    if (!isset($_GET["id"])) {
-        $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
-        $limit = 7;
-=======
 // Handle GET request (Fetch blogs with pagination or a single blog by ID)
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     // Fetch all blogs with pagination
@@ -45,7 +29,6 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         // Pagination parameters
         $page = isset($_GET["page"]) ? (int)$_GET["page"] : 1;
         $limit = 7;  // Number of blogs per page
->>>>>>> ff70d7d (first commit from local)
         $offset = ($page - 1) * $limit;
 
         try {
@@ -55,11 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
             $totalPages = ceil($totalBlogs / $limit);
 
             // Fetch the blogs
-<<<<<<< HEAD
-            $stmt = $conn->prepare("SELECT id, title, image1, content1, image2, content2, image3, tag1, tag2, tag3, status, created_at 
-=======
             $stmt = $conn->prepare("SELECT id, title, read_time, image1, content1, image2, content2, tag1, tag2, tag3, status, created_at 
->>>>>>> ff70d7d (first commit from local)
                                     FROM blogs 
                                     ORDER BY id ASC 
                                     LIMIT :limit OFFSET :offset");
@@ -90,11 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
         try {
             // Fetch the specific blog
-<<<<<<< HEAD
-            $stmt = $conn->prepare("SELECT id, title, image1, content1, image2, content2, image3, tag1, tag2, tag3, status, created_at 
-=======
             $stmt = $conn->prepare("SELECT id, title, read_time, image1, content1, image2, content2, tag1, tag2, tag3, status, created_at 
->>>>>>> ff70d7d (first commit from local)
                                     FROM blogs 
                                     WHERE id = :id");
             $stmt->bindParam(":id", $blogId, PDO::PARAM_INT);
@@ -125,11 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
     $headers = getallheaders();
     $authHeader = $headers["Authorization"] ?? "";
     $token = str_replace("Bearer ", "", $authHeader);
-<<<<<<< HEAD
-    $secretKey = "admin@poeintl1224";
-=======
     $secretKey = "admin@lovesense2488";
->>>>>>> ff70d7d (first commit from local)
 
     // Decode token
     try {
@@ -196,11 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
         $headers = getallheaders();
         $authHeader = $headers["Authorization"] ?? "";
         $token = str_replace("Bearer ", "", $authHeader);
-<<<<<<< HEAD
-        $secretKey = "admin@poeintl1224";
-=======
         $secretKey = "admin@lovesense2488";
->>>>>>> ff70d7d (first commit from local)
 
         // Decode token
         try {
@@ -220,10 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
 
         $blogId = $inputData["id"];
         $title = $inputData["title"] ?? null;
-<<<<<<< HEAD
-=======
         $readTime = $inputData["read_time"] ?? null;
->>>>>>> ff70d7d (first commit from local)
         $content1 = $inputData["content1"] ?? null;
         $content2 = $inputData["content2"] ?? null;
         $tag1 = $inputData["tag1"] ?? null;
@@ -236,15 +200,9 @@ if ($_SERVER["REQUEST_METHOD"] === "PUT") {
             exit();
         }
 
-<<<<<<< HEAD
-        $stmt = $conn->prepare("UPDATE blogs SET title = ?, content1 = ?, content2 = ?, tag1 = ?, tag2 = ?, tag3 = ?, status = ? WHERE id = ?");
-        $stmt->execute([
-            $title, $content1, $content2, $tag1, $tag2, $tag3, $status, $blogId
-=======
         $stmt = $conn->prepare("UPDATE blogs SET title = ?, read_time = ?, content1 = ?, content2 = ?, tag1 = ?, tag2 = ?, tag3 = ?, status = ? WHERE id = ?");
         $stmt->execute([
             $title, $readTime, $content1, $content2, $tag1, $tag2, $tag3, $status, $blogId
->>>>>>> ff70d7d (first commit from local)
         ]);
 
         // Log the update action

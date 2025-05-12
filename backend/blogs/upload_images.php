@@ -5,11 +5,7 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 // ✅ Allow CORS for frontend requests
-<<<<<<< HEAD
-header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
-=======
 header("Access-Control-Allow-Origin: https://mylovesense.online");
->>>>>>> ff70d7d (first commit from local)
 header("Access-Control-Allow-Methods: POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");
@@ -63,21 +59,13 @@ if (!$id) {
 }
 
 // ✅ Handle image upload
-<<<<<<< HEAD
-$uploadDir = "../../assets/imgs/";
-=======
 $uploadDir = "uploads/";
->>>>>>> ff70d7d (first commit from local)
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 
 $imagePaths = [];
-<<<<<<< HEAD
-for ($i = 1; $i <= 3; $i++) {
-=======
 for ($i = 1; $i <= 2; $i++) {
->>>>>>> ff70d7d (first commit from local)
     $imageKey = "image$i";
     if (!isset($_FILES[$imageKey]) || $_FILES[$imageKey]["error"] !== UPLOAD_ERR_OK) {
         continue;

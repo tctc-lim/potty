@@ -3,12 +3,6 @@
 
 <head>
     <meta charset="utf-8">
-<<<<<<< HEAD
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Blog Dashboard</title>
-    <link rel="stylesheet" href="../assets/css/all.min.css">
-=======
     <meta name="viewport" content="width=device-width, initial-scale=0.6" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Blog Dashboard</title>
@@ -19,7 +13,6 @@
     <link rel="stylesheet" href="../assets/css/meanmenu.min.css">
     <link rel="stylesheet" href="../assets/css/magnific-popup.css">
     <link rel="stylesheet" href="../assets/css/master-design-studio.css">
->>>>>>> ff70d7d (first commit from local)
     <link rel="stylesheet" href="../assets/css/dashboard.css">
     <link rel="stylesheet" href="../assets/css/mediaquery.css">
 </head>
@@ -58,11 +51,7 @@
     </div>
     <div id="dashboard">
         <div class="top-bar">
-<<<<<<< HEAD
-            <img src="../assets/imgs/logo/logo-purple.png" alt="logo" class="logo" width="200px">
-=======
             <img src="../images/logos/logo2.png" alt="logo" class="logo" width="150px">
->>>>>>> ff70d7d (first commit from local)
             <h1 class="user">Welcome,<p id="loggedinuser"></p>
             </h1>
         </div>
@@ -86,7 +75,7 @@
                 </div>
             </div>
             <div class="activities">
-                    <p>Recent Activities</p>
+                <p>Recent Activities</p>
                 <ul id="activity-list">
                     <li>Loading activities...</li>
                 </ul>
@@ -111,57 +100,10 @@
                     </table>
                 </div>
             </div>
-            
+
         </div>
     </div>
     <script src="../assets/js/dashboard.js"></script>
-<<<<<<< HEAD
-    <script>
-        (async () => {
-          try {
-            const response = await fetch(`${BASE_URL}/backend/blogs/recent_blogs.php`);
-            const data = await response.json();
-      
-            const recentBlogs = data.recent_blogs;
-            const blogTable = document.querySelector("#recent-blogs-table tbody");
-      
-            if (!recentBlogs || recentBlogs.length === 0) {
-              blogTable.innerHTML = "<tr><td colspan='4'>No recent blogs found.</td></tr>";
-              return;
-            }
-      
-            blogTable.innerHTML = ""; // Clear existing rows
-      
-            recentBlogs.forEach((blog, index) => {
-              const row = document.createElement("tr");
-              row.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${blog.title}</td>
-                <td>${new Date(blog.created_at).toLocaleString()}</td>
-                <td class="recent-status">${blog.status}</td>
-              `;
-              blogTable.appendChild(row);
-            });
-      
-            document.querySelectorAll(".recent-status").forEach(statusCell => {
-              if (statusCell.textContent.trim() === "PENDING") {
-                statusCell.style.backgroundColor = "yellow";
-              } else {
-                statusCell.style.backgroundColor = "green";
-                statusCell.style.color = "white";
-              }
-            });
-          } catch (error) {
-            const blogTable = document.querySelector("#recent-blogs-table tbody");
-            if (blogTable) {
-              blogTable.innerHTML = `<tr><td colspan='4'>${error.message}</td></tr>`;
-            }
-            console.error("Error loading recent blogs:", error);
-          }
-        })();
-      </script>      
-=======
->>>>>>> ff70d7d (first commit from local)
 </body>
 
 </html>
