@@ -5,8 +5,11 @@ body {
   display: flex;
   position: relative;
   background-color: #f2f2f2;
+<<<<<<< HEAD
   font-family: var(--font_instrumentsans), sans-serif;
   zoom: 0.8;
+=======
+>>>>>>> ff70d7d (first commit from local)
 }
 
 .loader {
@@ -110,8 +113,14 @@ body {
   align-items: center;
 }
 
+<<<<<<< HEAD
 .user, #loggedinuser {
   font-size: 24px;
+=======
+.user {
+  font-size: 23px;
+  color: #662d91;
+>>>>>>> ff70d7d (first commit from local)
   display: flex;
   gap: 10px;
   align-items: center;
@@ -124,8 +133,13 @@ body {
 }
 
 .bottom-bar {
+<<<<<<< HEAD
   min-height: 100vh;
   padding: 0px 2rem;
+=======
+  background-color: #662d91;
+  min-height: 100vh;
+>>>>>>> ff70d7d (first commit from local)
 }
 
 .cards {
@@ -370,10 +384,13 @@ td {
   color: white;
 }
 
+<<<<<<< HEAD
 .blog {
   margin-bottom: 60px;
 }
 
+=======
+>>>>>>> ff70d7d (first commit from local)
 .image-div,
 .input-div {
   display: flex;
@@ -523,13 +540,63 @@ select#status {
   font-weight: 600;
 }
 
+<<<<<<< HEAD
+=======
+#blogTable {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.blog-data-content {
+  display: flex;
+  gap: 40px;
+  flex-wrap: nowrap;
+}
+
+.blog-data {
+  margin: 10px 20px;
+  padding: 40px 20px;
+  background-color: white;
+  border-radius: 20px;
+  width: 100%;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.blog-details {
+  max-width: 560px;
+}
+
+.blog-details > button {
+  margin-right: 10px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  border: 2px solid rgb(71, 69, 69);
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.blog-details > button:hover {
+  scale: 1.04;
+}
+
+>>>>>>> ff70d7d (first commit from local)
 #paginationControls {
   display: flex;
   flex-wrap: nowrap;
   gap: 14px;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
   margin: 80px 0px;
+=======
+  margin: 20px 0px;
+>>>>>>> ff70d7d (first commit from local)
 }
 
 .activities {
@@ -583,6 +650,7 @@ select#status {
   padding: 10px;
   white-space: nowrap;
 }
+<<<<<<< HEAD
 
 .blog-area .blogs-wrapper {
   display: flex;
@@ -733,3 +801,5 @@ select#status {
       padding: 8px 14px
   }
 }
+=======
+>>>>>>> ff70d7d (first commit from local)

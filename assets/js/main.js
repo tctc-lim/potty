@@ -342,6 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+<<<<<<< HEAD
 document.getElementById('contactForm').addEventListener('keydown', function (e) {
   if (e.key === 'Enter' && e.target.nodeName !== 'TEXTAREA') {
     e.preventDefault();
@@ -498,6 +499,8 @@ document.getElementById("mainService").addEventListener("change", function () {
   }
 });
 
+=======
+>>>>>>> ff70d7d (first commit from local)
 // Always refresh ScrollTrigger after load
 window.addEventListener("load", () => {
   ScrollTrigger.refresh();

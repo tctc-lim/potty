@@ -5328,7 +5328,11 @@ section {
 
 @media only screen and (max-width: 767px) {
   .container-preloader .animation-preloader .txt-loading .characters {
+<<<<<<< HEAD
       font-size:30px
+=======
+      font-size:50px
+>>>>>>> ff70d7d (first commit from local)
   }
 }
 
@@ -6627,7 +6631,11 @@ section {
   bottom: 25px;
   width: 0%;
   height: 2px;
+<<<<<<< HEAD
   background-color: var(--white);
+=======
+  background-color: var(--primary2);
+>>>>>>> ff70d7d (first commit from local)
   transition: width 0.3s ease-in-out;
 }
 

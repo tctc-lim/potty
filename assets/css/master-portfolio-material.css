@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import"https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap";@import"https://fonts.googleapis.com/css2?family=Teko:wght@300..700&display=swap";@import"https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap";@import"https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap";@import"https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap";@import"https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap";@import"https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap";:root {
     --primary: #121212;
     --secondary: #555555;
@@ -8944,18 +8945,62 @@ section {
 
 @media only screen and (max-width: 1199px) {
     .swiper-carousel .slide-content {
+=======
+@media only screen and (max-width: 1919px) {
+    .swiper-material {
+        height:calc(100vh - 160px)
+    }
+}
+
+.demo-material-image {
+    position: absolute;
+    left: 0%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    display: block;
+    border-radius: 0
+}
+
+.demo-material-label {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50%;
+    box-sizing: border-box;
+    padding: 48px 50px;
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    justify-content: flex-end;
+    align-items: flex-start;
+    white-space: nowrap
+}
+
+@media only screen and (max-width: 1199px) {
+    .demo-material-label {
+>>>>>>> ff70d7d (first commit from local)
         padding:28px 30px
     }
 }
 
+<<<<<<< HEAD
 .swiper-carousel .slide-content .title {
     font-size: 24px;
     font-weight: 500;
+=======
+.demo-material-label .title {
+    font-size: 36px;
+>>>>>>> ff70d7d (first commit from local)
     line-height: 1;
     color: var(--white);
     text-transform: uppercase
 }
 
+<<<<<<< HEAD
 @media(max-width: 575px) {
     .swiper-carousel .slide-content .title {
         font-size:20px
@@ -8964,11 +9009,34 @@ section {
 
 .swiper-carousel .slide-content .tag {
     font-size: 12px;
+=======
+@media only screen and (max-width: 1399px) {
+    .demo-material-label .title {
+        font-size:30px
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .demo-material-label .title {
+        font-size:26px
+    }
+}
+
+@media(max-width: 575px) {
+    .demo-material-label .title {
+        font-size:22px
+    }
+}
+
+.demo-material-label .tag {
+    font-size: 14px;
+>>>>>>> ff70d7d (first commit from local)
     font-weight: 400;
     text-transform: uppercase;
     color: var(--white);
     display: inline-block;
     line-height: 1;
+<<<<<<< HEAD
     margin-top: 10px
 }
 
@@ -8987,6 +9055,31 @@ section {
     padding-top: 100px;
     padding-bottom: 100px;
     height: 100vh
+=======
+    margin-top: 17px
+}
+
+@media only screen and (max-width: 1199px) {
+    .demo-material-label .tag {
+        margin-top:12px
+    }
+}
+
+.swiper-material-wrapper {
+    border-radius: 0
+}
+
+.portfolio-area-inner {
+    padding-top: 100px;
+    padding-bottom: 100px
+}
+
+@media only screen and (max-width: 1919px) {
+    .portfolio-area-inner {
+        padding-top:80px;
+        padding-bottom: 80px
+    }
+>>>>>>> ff70d7d (first commit from local)
 }
 
 .portfolio-slider {
@@ -9005,6 +9098,13 @@ section {
     z-index: 2
 }
 
+<<<<<<< HEAD
+=======
+.dark .portfolio-slider .nav-icon {
+    color: var(--white)
+}
+
+>>>>>>> ff70d7d (first commit from local)
 .portfolio-slider .slider-nav {
     display: flex;
     height: 100px;
@@ -9063,6 +9163,13 @@ section {
     margin: 0
 }
 
+<<<<<<< HEAD
+=======
+.dark .portfolio-slider .portfolio-pagination .swiper-pagination-bullet {
+    background-color: var(--white)
+}
+
+>>>>>>> ff70d7d (first commit from local)
 @media only screen and (max-width: 1199px) {
     .portfolio-slider .portfolio-pagination .swiper-pagination-bullet {
         width:20px
@@ -9078,5 +9185,8 @@ section {
         width:40px
     }
 }
+<<<<<<< HEAD
 
 /*# sourceMappingURL=master-portfolio-carousel.css.map */
+=======
+>>>>>>> ff70d7d (first commit from local)

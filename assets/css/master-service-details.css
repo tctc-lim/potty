@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .cta-inner {
     padding-inline: 30px;
     background-color: var(--primary);
@@ -17,6 +18,21 @@
 }
 
 .cta-inner .shape-1 {
+=======
+.contact-area-inner {
+    padding-inline:30px;
+    background-color: var(--primary);
+    position: relative;
+    z-index: 1;
+    overflow: hidden
+}
+
+.dark .contact-area-inner {
+    background-color: #1b1b1b
+}
+
+.contact-area-inner .shape-1 {
+>>>>>>> ff70d7d (first commit from local)
     position: absolute;
     inset-inline-end: -6%;
     top: -15%;
@@ -25,25 +41,41 @@
 }
 
 @media only screen and (max-width: 1399px) {
+<<<<<<< HEAD
     .cta-inner .shape-1 {
         top: -45%
+=======
+    .contact-area-inner .shape-1 {
+        top:-45%
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
 @media only screen and (max-width: 1199px) {
+<<<<<<< HEAD
     .cta-inner .shape-1 {
         width: 340px
+=======
+    .contact-area-inner .shape-1 {
+        width:340px
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
 @media only screen and (max-width: 991px) {
+<<<<<<< HEAD
     .cta-inner .shape-1 {
         width: 270px;
+=======
+    .contact-area-inner .shape-1 {
+        width:270px;
+>>>>>>> ff70d7d (first commit from local)
         top: -35%
     }
 }
 
 @media only screen and (max-width: 767px) {
+<<<<<<< HEAD
     .cta-inner .shape-1 {
         display: none
     }
@@ -52,45 +84,87 @@
 .cta .section-title {
     max-width: 830px;
     margin-inline: auto;
+=======
+    .contact-area-inner .shape-1 {
+        display:none
+    }
+}
+
+.contact-area .section-title {
+    max-width: 830px;
+    margin-inline:auto;
+>>>>>>> ff70d7d (first commit from local)
     color: var(--white)
 }
 
 @media only screen and (max-width: 1919px) {
+<<<<<<< HEAD
     .cta .section-title {
         max-width: 730px
+=======
+    .contact-area .section-title {
+        max-width:730px
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
 @media only screen and (max-width: 1199px) {
+<<<<<<< HEAD
     .cta .section-title {
         max-width: 580px
+=======
+    .contact-area .section-title {
+        max-width:580px
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
 @media only screen and (max-width: 991px) {
+<<<<<<< HEAD
     .cta .section-title {
         max-width: 480px
     }
 }
 
 .cta .section-content {
+=======
+    .contact-area .section-title {
+        max-width:480px
+    }
+}
+
+.contact-area .section-content {
+>>>>>>> ff70d7d (first commit from local)
     text-align: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
 
+<<<<<<< HEAD
 .cta .section-content .btn-wrapper {
+=======
+.contact-area .section-content .btn-wrapper {
+>>>>>>> ff70d7d (first commit from local)
     margin-top: 42px
 }
 
 @media only screen and (max-width: 991px) {
+<<<<<<< HEAD
     .cta .section-content .btn-wrapper {
         margin-top: 22px
     }
 }
 
 .cta .section-content .wc-btn-underline {
+=======
+    .contact-area .section-content .btn-wrapper {
+        margin-top:22px
+    }
+}
+
+.contact-area .section-content .wc-btn-underline {
+>>>>>>> ff70d7d (first commit from local)
     color: var(--white);
     text-transform: uppercase
 }
@@ -100,16 +174,25 @@
 }
 
 .service-details-area {
+<<<<<<< HEAD
     padding-top: 100px;
+=======
+    padding-top: 100px
+>>>>>>> ff70d7d (first commit from local)
 }
 
 @media only screen and (max-width: 1399px) {
     .service-details-area {
+<<<<<<< HEAD
         padding-top: 80px
+=======
+        padding-top:80px
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
 .service-details-area .thumb-main {
+<<<<<<< HEAD
     position: relative;
     height: 654px;
 }
@@ -180,6 +263,13 @@
 .service-details-area .thumb-main .service-bg-content .btn:hover a:hover {
     color: var(--white);
 
+=======
+    position: relative
+}
+
+.service-details-area .thumb-main img {
+    width: 100%
+>>>>>>> ff70d7d (first commit from local)
 }
 
 .service-details-area .thumb-main .hero-social {
@@ -188,6 +278,7 @@
     gap: 20px;
     align-items: center;
     position: absolute;
+<<<<<<< HEAD
     right: 1380px;
     bottom: -180px
 }
@@ -272,6 +363,15 @@
 @media only screen and (max-width: 1919px) {
     .service-details-area .thumb-main .hero-social {
         right: 30px;
+=======
+    left: -210px;
+    bottom: -180px
+}
+
+@media only screen and (max-width: 1919px) {
+    .service-details-area .thumb-main .hero-social {
+        left:30px;
+>>>>>>> ff70d7d (first commit from local)
         bottom: 30px;
         background-color: var(--white);
         padding: 20px 10px
@@ -280,16 +380,33 @@
 
 @media only screen and (max-width: 991px) {
     .service-details-area .thumb-main .hero-social {
+<<<<<<< HEAD
         writing-mode: initial;
+=======
+        writing-mode:initial;
+>>>>>>> ff70d7d (first commit from local)
         padding: 10px 20px
     }
 }
 
+<<<<<<< HEAD
 
 .service-details-area .thumb-main .hero-social .title {
     position: relative;
     padding-inline-end: 80px;
     display: inline-block;
+=======
+@media only screen and (max-width: 767px) {
+    .service-details-area .thumb-main .hero-social {
+        left:10px;
+        bottom: 10px
+    }
+}
+
+.service-details-area .thumb-main .hero-social .title {
+    position: relative;
+    padding-inline-end:80px;display: inline-block;
+>>>>>>> ff70d7d (first commit from local)
     font-size: 14px;
     color: var(--primary);
     text-transform: uppercase
@@ -297,7 +414,11 @@
 
 @media only screen and (max-width: 1919px) {
     .service-details-area .thumb-main .hero-social .title {
+<<<<<<< HEAD
         color: var(--black)
+=======
+        color:var(--black)
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
@@ -315,7 +436,11 @@
 
 @media only screen and (max-width: 991px) {
     .service-details-area .thumb-main .hero-social .title:before {
+<<<<<<< HEAD
         width: 60px;
+=======
+        width:60px;
+>>>>>>> ff70d7d (first commit from local)
         height: 1px;
         inset-inline-end: 0;
         top: 50%;
@@ -334,7 +459,11 @@
 
 @media only screen and (max-width: 1919px) {
     .service-details-area .thumb-main .hero-social .hero-social-links a {
+<<<<<<< HEAD
         color: var(--black)
+=======
+        color:var(--black)
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
@@ -356,13 +485,21 @@
 
 @media only screen and (max-width: 1199px) {
     .service-details-area .section-title-box {
+<<<<<<< HEAD
         grid-template-columns: 1fr 460px
+=======
+        grid-template-columns:1fr 460px
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
 @media only screen and (max-width: 991px) {
     .service-details-area .section-title-box {
+<<<<<<< HEAD
         grid-template-columns: 1fr
+=======
+        grid-template-columns:1fr
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
@@ -375,6 +512,7 @@
 
 @media only screen and (max-width: 991px) {
     .service-details-area .section-title-box .feature-list {
+<<<<<<< HEAD
         justify-content: flex-start
     }
 }
@@ -389,12 +527,19 @@
     .service-details-area .thumb-main .hero-social .hero-social-links {
         display: flex;
         gap: 10px
+=======
+        justify-content:flex-start
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
 @media(max-width: 575px) {
     .service-details-area .section-title-box .feature-list {
+<<<<<<< HEAD
         grid-template-columns: auto
+=======
+        grid-template-columns:auto
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
@@ -412,8 +557,12 @@
 
 .service-details-area .section-title-box .feature-list li:before {
     content: "+";
+<<<<<<< HEAD
     margin-inline-end: 13px
 }
+=======
+    margin-inline-end:13px}
+>>>>>>> ff70d7d (first commit from local)
 
 .service-details-area .text-wrapper {
     margin-top: 27px
@@ -446,7 +595,11 @@
 
 @media only screen and (max-width: 991px) {
     .service-details-area .working-steps {
+<<<<<<< HEAD
         grid-template-columns: repeat(2, 1fr)
+=======
+        grid-template-columns:repeat(2, 1fr)
+>>>>>>> ff70d7d (first commit from local)
     }
 
 
@@ -454,7 +607,11 @@
 
 @media(max-width: 575px) {
     .service-details-area .working-steps {
+<<<<<<< HEAD
         grid-template-columns: repeat(1, 1fr)
+=======
+        grid-template-columns:repeat(1, 1fr)
+>>>>>>> ff70d7d (first commit from local)
     }
 }
 
@@ -465,7 +622,11 @@
 
 @media only screen and (max-width: 991px) {
     .service-details-area .working-step {
+<<<<<<< HEAD
         padding-top: 20px;
+=======
+        padding-top:20px;
+>>>>>>> ff70d7d (first commit from local)
         border-top: 1px solid var(--border)
     }
 
@@ -497,6 +658,7 @@
 .service-details-area .working-step .text {
     margin-top: 15px
 }
+<<<<<<< HEAD
 
 .service-details-area .thumb-gallery {
     margin-top: 53px;
@@ -756,3 +918,5 @@
     -o-object-fit: cover;
     object-fit: cover
 }
+=======
+>>>>>>> ff70d7d (first commit from local)

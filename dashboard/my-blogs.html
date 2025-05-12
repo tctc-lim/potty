@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale= 1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Read Blogs</title>
@@ -24,6 +25,30 @@
             });
         });
     </script>
+=======
+    <meta name="viewport" content="width=device-width, initial-scale=0.6" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Read Blogs</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/mediaquery.css">
+    <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
+    <script src="../js/verify.js"></script>
+    <script src="https://cdn.tiny.cloud/1/uhe3odlme9v44d3l3usxdv9qizug88pw3tgvum72ns5dr0el/tinymce/7/tinymce.min.js"
+    referrerpolicy="origin"></script>
+    <link rel="icon" type="image/png" href="../images/logos/fvico3.png">
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        tinymce.init({
+            selector: "textarea",
+            plugins: "link image table lists",
+            toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright | image link",
+            automatic_uploads: true,
+            file_picker_types: "image",
+        });
+    });
+</script>
+>>>>>>> ff70d7d (first commit from local)
 </head>
 
 <body>
@@ -60,12 +85,17 @@
     </div>
     <div id="dashboard">
         <div class="top-bar">
+<<<<<<< HEAD
             <img src="../assets/imgs/logo/logo-purple.png" alt="logo" class="logo" width="200px">
+=======
+            <img src="../images/logos/logo2.png" alt="logo" class="logo" width="150px">
+>>>>>>> ff70d7d (first commit from local)
             <h1 class="user">Welcome,<p id="loggedinuser"></p>
         </div>
         <div class="bottom-bar">
             <div class="blog-container">
                 <div class="user-bar">
+<<<<<<< HEAD
                     <p>My Blogs</p>
                 </div>
                 <div>
@@ -85,6 +115,15 @@
         </div>
     </div>
     </div>
+=======
+                    <p>My Blog</p>
+                </div>
+                <div id="blogTable"><p class="loader">Loading...</p></div>
+                <div id="paginationControls"></div> <!-- Pagination Here -->
+            </div>
+        </div>
+    </div>
+>>>>>>> ff70d7d (first commit from local)
 
     <!-- Delete Confirmation Modal -->
     <div id="deleteBlogModal" class="modal">
@@ -97,7 +136,11 @@
         </div>
     </div>
 
+<<<<<<< HEAD
     <script src="../assets/js/blogs.js"></script>
+=======
+    <script src="../js/blogs.js"></script>
+>>>>>>> ff70d7d (first commit from local)
 </body>
 
 </html>

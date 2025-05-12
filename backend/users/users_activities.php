@@ -5,7 +5,11 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 
 // ✅ Allow requests from the frontend
+<<<<<<< HEAD
 header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
+=======
+header("Access-Control-Allow-Origin: https://mylovesense.online");
+>>>>>>> ff70d7d (first commit from local)
 header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");

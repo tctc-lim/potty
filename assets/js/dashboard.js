@@ -7,7 +7,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     const userData = localStorage.getItem("user");
     const user = userData ? JSON.parse(userData) : null; // ✅ Prevent errors if user data is missing
+<<<<<<< HEAD
     
+=======
+>>>>>>> ff70d7d (first commit from local)
 
     try {
         // ✅ Fetch blog data
@@ -29,7 +32,11 @@ document.addEventListener("DOMContentLoaded", async function () {
             blogCards[2].textContent = completedBlogs;
         }
 
+<<<<<<< HEAD
         if (user && user.role === "Admin") {
+=======
+        if (user && user.role === "admin") {
+>>>>>>> ff70d7d (first commit from local)
             // ✅ Fetch registered users
             const userResponse = await fetch(`${BASE_URL}/backend/users/read_users.php`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -54,7 +61,23 @@ document.addEventListener("DOMContentLoaded", async function () {
             if (userCard) userCard.style.display = "none";
         }
 
+<<<<<<< HEAD
 
+=======
+        const userResponse = await fetch(`${BASE_URL}/backend/users/read_users.php`, {
+            headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        });
+
+        const userDataResponse = await userResponse.json();
+        const users = userDataResponse.users || [];
+
+        // ✅ Ensure the element exists before setting text
+        const loggedInUserElement = document.getElementById("loggedinuser");
+        if (loggedInUserElement) {
+            loggedInUserElement.textContent = user.name;
+        }
+        
+>>>>>>> ff70d7d (first commit from local)
         // ✅ Fetch recent activities
         const activityResponse = await fetch(`${BASE_URL}/backend/users/users_activities.php`, {
             headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -82,6 +105,47 @@ document.addEventListener("DOMContentLoaded", async function () {
     } catch (error) {
         console.error("Error fetching dashboard data:", error);
     }
+<<<<<<< HEAD
+=======
+
+    try {
+        const response = await fetch(`${BASE_URL}/backend/blogs/recent_blogs.php`);
+        const data = await response.json();
+
+        const recentBlogs = data.recent_blogs;
+        const blogTable = document.querySelector("#recent-blogs-table tbody");
+
+        if (!recentBlogs || recentBlogs.length === 0) {
+            blogTable.innerHTML = "<tr><td colspan='3'>No recent blogs found.</td></tr>";
+            return;
+        }
+
+        blogTable.innerHTML = ""; // Clear existing rows
+
+        recentBlogs.forEach((blog, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${index + 1}</td>
+                <td>${blog.title}</td>
+                <td>${new Date(blog.created_at).toLocaleString()}</td>
+                <td class="recent-status">${blog.status}</td>
+            `;
+            blogTable.appendChild(row);
+        });
+
+        // ✅ Select all elements with class "recent-status"
+        document.querySelectorAll(".recent-status").forEach(statusCell => {
+            if (statusCell.textContent.trim() === "PENDING") {
+                statusCell.style.backgroundColor = "yellow";
+            } else {
+                statusCell.style.backgroundColor = "green";
+                statusCell.style.color = "white";
+            }
+        })
+    } catch (error) {
+        blogTable.innerHTML = `<tr><td colspan='3'>${error}</td></tr>`;
+    }
+>>>>>>> ff70d7d (first commit from local)
 });
 
 // ✅ Navigation & Active Link Handling
@@ -126,7 +190,11 @@ async function checkLogin() {
         return;
     }
 
+<<<<<<< HEAD
     if (user && user.role !== "Admin" && usertab) {
+=======
+    if (user && user.role !== "admin" && usertab) {
+>>>>>>> ff70d7d (first commit from local)
         usertab.style.display = "none";
     }
 
@@ -157,5 +225,8 @@ function setupEventListeners() {
             window.location.href = "../login.html";
         });
 }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ff70d7d (first commit from local)

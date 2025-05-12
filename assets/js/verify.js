@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const BASE_URL = "http://localhost:8000"; // Adjust for your setup
+=======
+const BASE_URL = "https://mylovesense.online"; // Adjust for your setup
+>>>>>>> ff70d7d (first commit from local)
 
 document.addEventListener("DOMContentLoaded", async function () {
     const userData = localStorage.getItem("user");
@@ -26,7 +30,11 @@ async function checkLogin() {
         return;
     }
 
+<<<<<<< HEAD
     if (user && user.role !== "Admin" && usertab) {
+=======
+    if (user && user.role !== "admin" && usertab) {
+>>>>>>> ff70d7d (first commit from local)
         usertab.style.display = "none";
     }
 
@@ -96,4 +104,8 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", async function () {
     await checkLogin()
     setupNavigation(); // Setup navigation events
+<<<<<<< HEAD
+=======
+    setupEventListeners(); // Setup general event listeners
+>>>>>>> ff70d7d (first commit from local)
 });

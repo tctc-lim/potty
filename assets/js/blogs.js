@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", async function () {
   // Fetch blogs on page load
   fetchBlogs(1);
-});
+})
 
 const token = localStorage.getItem("token"); // Get authentication token
 
 // Function to Fetch Blogs (for display) with Pagination
 async function fetchBlogs(page = 1) {
   try {
-    const response = await fetch(
-      `${BASE_URL}/backend/blogs/blogs.php?page=${page}&limit=7`
-    );
+    const response = await fetch(`${BASE_URL}/backend/blogs/blogs.php?page=${page}&limit=7`);
     const blogdata = await response.json();
     blogs = blogdata.blogs;
 
@@ -19,33 +17,25 @@ async function fetchBlogs(page = 1) {
 
     blogs.forEach((blog, index) => {
       blogTable.innerHTML += `
-    <article class="blog has_fade_anim" data-fade-from="right" data-delay="0.15">
-        <div class="thumb">
-            <img src="${blog.image1}" alt="blog image">
-        </div>
-        <div class="content">
-            <h2 class="title">${index + 1 + (page - 1) * 5}. ${blog.title}</h2>
-            <div class="meta-list">
-                <span class="meta tag">${blog.status}</span>
-                <span class="meta tag" data-id="${blog.id}">
-                    <button class="edit-btn" data-id="${blog.id}">Edit</button>
-                </span>
-                <span class="meta tag">
-                    <button onclick='openDeleteModal(${blog.id})'>Delete</button>
-                </span>
-                <span class="meta tag">
-                    <button onclick="viewBlog(${blog.id})">
-                        <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </span>
-            </div>
-        </div>
-    </article>
+                <div class="blog-data">
+                    <div class="blog-data-content">
+                        <p class="the-blog-id">${index + 1 + (page - 1) * 5}.</p>
+                        <img src="../backend/blogs/${blog.image1}" alt="Image1" width="300px" height="200px" class="blog-img">
+                    </div>
+                    <div class="blog-details">
+                        <h2>${blog.title}</h2>
+                        <p>${blog.content1.substring(0, 100)}...</p>
+                        <p>Status: ${blog.status}</p>
+                        <button onclick="viewBlog(${blog.id})">See More</button>
+                        <button class="edit-btn" data-id="${blog.id}">Edit</button>
+                        <button onclick='openDeleteModal(${blog.id})'>Delete</button>
+                    </div>
+                </div>
             `;
     });
 
     // Attach event listener to all Edit buttons
-    document.querySelectorAll(".edit-btn").forEach((button) => {
+    document.querySelectorAll(".edit-btn").forEach(button => {
       button.addEventListener("click", function () {
         const blogId = this.getAttribute("data-id");
         window.location.href = `edit-blog.html?id=${blogId}`;
@@ -62,20 +52,17 @@ function viewBlog(blogId) {
   window.location.href = `../blog-details.html?id=${blogId}`;
 }
 
+
 // Function to Update Pagination Controls
 function updatePagination(currentPage, totalPages) {
-  const paginationContainer =
-    document.getElementById("paginationControls") ||
-    document.createElement("div");
+  const paginationContainer = document.getElementById("paginationControls") || document.createElement("div");
   paginationContainer.id = "paginationControls";
 
   let pageLinks = "";
 
   // Create "Previous" Button
   pageLinks += `
-        <button onclick="changePage(${currentPage - 1})" ${
-    currentPage === 1 ? "disabled" : ""
-  }>Previous</button>
+        <button onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? "disabled" : ""}>Previous</button>
     `;
 
   // Create page number buttons (1 to totalPages, but limited range for UI)
@@ -84,17 +71,13 @@ function updatePagination(currentPage, totalPages) {
 
   for (let i = startPage; i <= endPage; i++) {
     pageLinks += `
-            <button onclick="changePage(${i})" ${
-      i === currentPage ? "class='active'" : ""
-    }>${i}</button>
+            <button onclick="changePage(${i})" ${i === currentPage ? "class='active'" : ""}>${i}</button>
         `;
   }
 
   // Create "Next" Button
   pageLinks += `
-        <button onclick="changePage(${currentPage + 1})" ${
-    currentPage === totalPages || totalPages === 0 ? "disabled" : ""
-  }>Next</button>
+        <button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages || totalPages === 0 ? "disabled" : ""}>Next</button>
     `;
 
   paginationContainer.innerHTML = pageLinks;
@@ -121,34 +104,35 @@ function closeDeleteModal() {
 }
 
 async function confirmDelete() {
-  const status = document.getElementById("status-deletebar");
-  status.innerHTML = "Loading...";
+  const status = document.getElementById("status-deletebar")
+  status.innerHTML = "Loading..."
   const blogId = document
     .getElementById("confirmDeleteButton")
     .getAttribute("data-id");
 
   try {
-    const response = await fetch(
-      `${BASE_URL}/backend/blogs/blogs.php?id=${blogId}`,
-      {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      }
-    );
+    const response = await fetch(`${BASE_URL}/backend/blogs/blogs.php?id=${blogId}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    });
 
     const result = await response.json();
     if (result.success) {
-      status.innerHTML = "Blog deleted successfully!";
-      status.style.color = "green";
+      status.innerHTML = "Blog deleted successfully!"
+      status.style.color = "green"
       setTimeout(() => {
         closeDeleteModal();
         fetchBlogs(1); // Refresh blog list
       }, 1000);
     } else {
-      status.innerHTML = "Failed to delete blog!";
-      status.style.color = "red";
+      status.innerHTML = "Failed to delete blog!"
+      status.style.color = "red"
     }
   } catch (error) {
     console.error("Error deleting blog:", error);
   }
 }
+
+
+
+
