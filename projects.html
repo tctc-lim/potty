@@ -20,8 +20,8 @@
   <link rel="stylesheet" href="assets/css/progressbar.css">
   <link rel="stylesheet" href="assets/css/meanmenu.min.css">
   <link rel="stylesheet" href="assets/css/magnific-popup.css">
-  <link rel="stylesheet" href="assets/css/master-portfolio-material.css">
   <link rel="stylesheet" href="assets/css/master-design-studio.css">
+  <link rel="stylesheet" href="assets/css/master-portfolio-material.css">
 </head>
 
 
@@ -221,20 +221,88 @@
 
         <main>
 
-          <!-- project area start  -->
-          <section class="project-area section-spacing">
-            <div class="container">
-              <div id="projectsGrid" class="projects-grid">
-                <!-- Project items will be injected here -->
-              </div>
-
-              <div class="pagination-buttons" style="text-align: center; margin-top: 30px;">
-                <button id="prevPage" class="wc-btn wc-btn-primary">Prev</button>
-                <button id="nextPage" class="wc-btn wc-btn-primary">Next</button>
+          <!-- portfolio area start  -->
+          <section class="portfolio-area">
+            <div class="container large">
+              <div class="portfolio-area-inner">
+                <div id="app" class="portfolio-slider">
+                  <!-- Carousel slider -->
+                  <div class="swiper portfolio-active">
+                    <div class="swiper-wrapper">
+                      <div class="swiper-slide has_fade_anim" data-fade-from="bottom">
+                        <a href="project-details.html?id=project1">
+                          <div class="swiper-carousel-animate-opacity">
+                            <img src="assets/imgs/projects/Chiken Captitol seqeunce_page-0001.jpg" alt="image">
+                            <div class="slide-content">
+                              <h2 class="title">Chiken Capitol</h2>
+                              <span class="tag">Marketing - 2023</span>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="swiper-slide">
+                        <a href="project-details.html?id=project2">
+                          <div class="swiper-carousel-animate-opacity">
+                            <img src="assets/imgs/projects/Glim Brand Sequence_pages-to-jpg-0001.jpg" alt="image">
+                            <div class="slide-content">
+                              <h2 class="title">Glimswave</h2>
+                              <span class="tag">Web - 2020</span>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="swiper-slide">
+                        <a href="#">
+                          <div class="swiper-carousel-animate-opacity">
+                            <img src="assets/imgs/projects/project1.jpg" alt="image">
+                            <div class="slide-content">
+                              <h2 class="title">Terobangs</h2>
+                              <span class="tag">Fashion -2017</span>
+                            </div>
+                          </div>
+                      </div>
+                      </a>
+                      <div class="swiper-slide">
+                        <a href="project-details.html?id=project1">
+                          <div class="swiper-carousel-animate-opacity">
+                            <img src="assets/imgs/projects/Chiken Captitol seqeunce_page-0002.jpg" alt="image">
+                            <div class="slide-content">
+                              <h2 class="title">Chicken Capitol</h2>
+                              <span class="tag">Marketing - 2023</span>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="swiper-slide">
+                        <a href="project-details.html?id=project2">
+                          <div class="swiper-carousel-animate-opacity">
+                            <img src="assets/imgs/projects/Glim Brand Sequence_pages-to-jpg-0002.jpg" alt="image">
+                            <div class="slide-content">
+                              <h2 class="title">Glimswave</h2>
+                              <span class="tag">Web - 2020</span>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="slider-nav overflow-hidden">
+                    <div class="portfolio-button-prev nav-icon has_fade_anim" data-fade-from="left" data-on-scroll="0"
+                      data-delay="0.30">
+                      <i class="fa-solid fa-angle-left"></i>Prev
+                    </div>
+                    <div class="portfolio-button-next nav-icon has_fade_anim" data-fade-from="right" data-on-scroll="0"
+                      data-delay="0.30">
+                      Next<i class="fa-solid fa-angle-right"></i>
+                    </div>
+                  </div>
+                  <div class="portfolio-pagination has_fade_anim" data-fade-from="bottom" data-fade-offset="0"
+                    data-on-scroll="0" data-delay="0.45"></div>
+                </div>
               </div>
             </div>
           </section>
-          <!-- project area end  -->
+          <!-- portfolio area end  -->
 
         </main>
       </div>
@@ -248,7 +316,7 @@
   <script src="assets/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/jquery.magnific-popup.min.js"></script>
   <script src="assets/js/swiper-bundle.min.js"></script>
-  <script src="assets/js/effect-material.js"></script>
+  <script src="assets/js/effect-carousel.min.js"></script>
   <script src="assets/js/counter.js"></script>
   <script src="assets/js/progressbar.js"></script>
   <script src="assets/js/gsap.min.js"></script>
@@ -261,126 +329,41 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/error-handling.js"></script>
   <script src="assets/js/offcanvas.js"></script>
-
   <script>
-
-    // portrfolio slider 
+    // portrfolio active 
     if ('.portfolio-active') {
-      const portfolio_active = new Swiper('.portfolio-active', {
-        // pass EffectMaterial module to modules
-        modules: [EffectMaterial],
-        // specify "material" effect
-        effect: 'material',
-        // material effect parameters
-        materialEffect: {
-          slideSplitRatio: 0.65,
+      const swiper = new Swiper('.portfolio-active', {
+        // pass EffectCarousel module to modules
+        modules: [EffectCarousel],
+        // specify "carousel" effect
+        effect: 'carousel',
+        // carousel effect parameters
+        carouselEffect: {
+          // opacity change per side slide
+          opacityStep: 0.00,
+          // scale change per side slide
+          scaleStep: 0.2,
+          // amount of side slides visible, can be 1, 2 or 3
+          sideSlides: 5,
         },
-        loop: true,
         grabCursor: true,
-        slidesPerView: 1,
-        spaceBetween: 30,
-        speed: 600,
+        loop: true,
+        loopAdditionalSlides: 1,
+        slidesPerView: 'auto',
         navigation: {
-          prevEl: ".portfolio-button-prev",
-          nextEl: ".portfolio-button-next",
+          nextEl: '.portfolio-button-next',
+          prevEl: '.portfolio-button-prev',
         },
         pagination: {
           el: '.portfolio-pagination',
-          type: 'bullets',
-          clickable: true
         },
-        breakpoints: {
-          // when window width is >= px
-          576: {
-            slidesPerView: 1,
-          },
-          768: {
-            slidesPerView: 1,
-          },
-          992: {
-            slidesPerView: 2,
-          },
-          1201: {
-            slidesPerView: 2,
-          },
-          1367: {
-            slidesPerView: 2,
-          },
-        }
+
+        autoplay: {
+          delay: 3000,
+        },
       });
     }
   </script>
-  <script>
-    const projectImages = [
-      'assets/imgs/projects/Chiken Captitol seqeunce_page-0001.jpg',
-      'assets/imgs/projects/Chiken Captitol seqeunce_page-0002.jpg',
-      'assets/imgs/projects/Chiken Captitol seqeunce_page-0003.jpg',
-      'assets/imgs/projects/Chiken Captitol seqeunce_page-0004.jpg',
-      'assets/imgs/projects/Chiken Captitol seqeunce_page-0005.jpg',
-      'assets/imgs/projects/project1.jpg',
-      'assets/imgs/projects/project1.jpg',
-      // Add more image paths as needed
-    ];
-
-    const projectsPerPage = 6;
-    let currentPage = 1;
-
-    const grid = document.getElementById('projectsGrid');
-    const prevBtn = document.getElementById('prevPage');
-    const nextBtn = document.getElementById('nextPage');
-
-    function renderProjects() {
-      grid.innerHTML = '';
-
-      const start = (currentPage - 1) * projectsPerPage;
-      const end = start + projectsPerPage;
-      const currentProjects = projectImages.slice(start, end);
-
-      currentProjects.forEach((src, index) => {
-        const item = document.createElement('div');
-        item.className = 'project-item has_fade_anim';
-        item.setAttribute('data-delay', (index * 0.1).toFixed(2));
-
-        item.innerHTML = `
-          <div class="thumb">
-            <a href="#" class="wc-btn wc-btn-primary btn-text-flip">
-              <span data-text="View project">View project</span>
-            </a>
-            <img src="${src}" alt="project-thumb">
-          </div>
-          <div class="project-content">
-            <h2 class="title">Mastartery</h2>
-            <p class="text">Design - 2019</p>
-          </div>
-        `;
-
-        grid.appendChild(item);
-      });
-
-      // Disable buttons at edges
-      prevBtn.disabled = currentPage === 1;
-      nextBtn.disabled = end >= projectImages.length;
-    }
-
-    prevBtn.addEventListener('click', () => {
-      if (currentPage > 1) {
-        currentPage--;
-        renderProjects();
-      }
-    });
-
-    nextBtn.addEventListener('click', () => {
-      if (currentPage * projectsPerPage < projectImages.length) {
-        currentPage++;
-        renderProjects();
-      }
-    });
-
-    // Initial load
-    renderProjects();
-  </script>
-
-
 </body>
 
 </html>
