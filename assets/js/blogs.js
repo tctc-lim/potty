@@ -73,9 +73,8 @@ function updatePagination(currentPage, totalPages) {
 
   // Create "Previous" Button
   pageLinks += `
-        <button onclick="changePage(${currentPage - 1})" ${
-    currentPage === 1 ? "disabled" : ""
-  }>Previous</button>
+        <button id='prevBtn' onclick="changePage(${currentPage - 1})" ${currentPage === 1 ? "disabled" : ""
+    }>Previous</button>
     `;
 
   // Create page number buttons (1 to totalPages, but limited range for UI)
@@ -84,17 +83,14 @@ function updatePagination(currentPage, totalPages) {
 
   for (let i = startPage; i <= endPage; i++) {
     pageLinks += `
-            <button onclick="changePage(${i})" ${
-      i === currentPage ? "class='active'" : ""
-    }>${i}</button>
+      <button onclick="changePage(${i})" ${i === currentPage ? "class='active'" : ""}>${i}</button>
         `;
   }
 
   // Create "Next" Button
   pageLinks += `
-        <button onclick="changePage(${currentPage + 1})" ${
-    currentPage === totalPages || totalPages === 0 ? "disabled" : ""
-  }>Next</button>
+        <button onclick="changePage(${currentPage + 1})" ${currentPage === totalPages || totalPages === 0 ? "disabled" : ""
+    }>Next</button>
     `;
 
   paginationContainer.innerHTML = pageLinks;
