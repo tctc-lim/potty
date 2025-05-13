@@ -47,7 +47,7 @@
     <div id="dashboard">
         <div id="dashboard">
             <div class="top-bar">
-                <img src="../images/logos/logo2.png" alt="logo" class="logo" width="150px">
+                <img src="../assets/imgs/logo/logo-purple.png" alt="logo" class="logo" width="200px">
                 <h1 class="user">Welcome,<p id="loggedinuser"></p>  
             </div>
             <div class="bottom-bar">
@@ -90,7 +90,7 @@
                     <div>
                         <input type="password" name="password" placeholder="Password" required>
                         <select name="role">
-                            <option value="Blog_poster">Blog Poster</option>
+                            <option value="Blog-poster">Blog Poster</option>
                             <option value="Admin">Admin</option>
                         </select>
                     </div>
@@ -116,7 +116,7 @@
             <div class="modal-content">
                 <span class="close" onclick="closeEditUserModal()">&times;</span>
                 <h2 id="editTitle">Edit User</h2>
-                <form id="editUserForm">
+                <form id="editUserForm" onsubmit="updateUser(event)">
                     <div>
                         <input type="text" disabled name="id" id="editUserId">
                         <input type="text" name="name" id="editUserName" placeholder="Name" required>
@@ -124,7 +124,7 @@
                     <div>
                         <input type="email" name="email" id="editUserEmail" placeholder="Email" required>
                         <select name="role" id="editUserRole">
-                            <option value="Blog_poster">Blog Poster</option>
+                            <option value="Blog-poster">Blog Poster</option>
                             <option value="Admin">Admin</option>
                         </select>
                     </div>

@@ -5,8 +5,12 @@ body {
   display: flex;
   position: relative;
   background-color: #f2f2f2;
-  font-family: var(--font_instrumentsans), sans-serif;
-  zoom: 0.8;
+  font-family: sans-serif;
+  zoom: 0.87;
+}
+
+article {
+  flex-grow: 1;
 }
 
 .loader {
@@ -43,11 +47,11 @@ body {
 }
 
 .nav-links:hover {
-  color: #bcd621;
+  color: #f6921e;
 }
 
 .nav-links.active {
-  color: #662d91;
+  color: #4e1f5a;
   font-weight: bold;
 }
 
@@ -117,6 +121,7 @@ body {
   align-items: center;
   flex-wrap: wrap;
   margin: 0px !important;
+  color: #4e1f5a;
 }
 
 .user > p {
@@ -124,7 +129,7 @@ body {
 }
 
 .bottom-bar {
-  min-height: 100vh;
+  min-height: 120vh;
   padding: 0px 2rem;
 }
 
@@ -441,9 +446,8 @@ label {
   display: block;
 }
 
-#blogForm input,
-#blogForm textarea,
-#blogForm select {
+#blogForm input, #edit-blog-form input, #blogForm textarea, #edit-blog-form textarea,
+#blogForm select, #edit-blog-form select {
   padding: 8px;
   margin: 5px 0 10px;
   border: 1px solid #ccc;
@@ -498,7 +502,7 @@ select#status {
   display: flex;
   justify-content: center;
 }
-#blogForm button,
+#blogForm button, #edit-blog-form button,
 .blog-button button {
   width: 150px;
   background-color: #bcd621;
@@ -513,7 +517,7 @@ select#status {
   transition: all 0.3s ease;
 }
 
-#blogForm button:hover {
+#blogForm button:hover, #edit-blog-form button:hover {
   scale: 1.03;
   opacity: 0.9;
 }
@@ -586,9 +590,9 @@ select#status {
 
 .blog-area .blogs-wrapper {
   display: flex;
-  justify-content: space-evenly;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 40px;
+  flex-grow: 1;
 }
 
 .blog:hover .thumb:before {
@@ -607,7 +611,7 @@ select#status {
   border-radius: 20px;
   overflow: hidden;
   position: relative;
-  width: 460px;
+  width: 400px;
 }
 
 @media only screen and (max-width: 1199px) {
@@ -617,8 +621,8 @@ select#status {
 }
 
 .blog .thumb img {
-  width: 460px;
-  height: 260px;
+  width: 400px;
+  height: 300px;
   transition: all .5s;
   object-fit: cover;
 }
@@ -650,8 +654,7 @@ select#status {
 .blog .content {
   padding-inline-start:49px;
   border-inline-start:1px solid white;
-  max-width: 460px;
-  margin-inline-start:auto
+  max-width: 400px;
   ;margin-top: 43px
 }
 
@@ -723,9 +726,6 @@ select#status {
 .blog .meta:last-child:hover i {
   transform: rotate(-45deg);
 }
-
-
-
 
 @media only screen and (max-width: 1199px) {
   .blog .meta {

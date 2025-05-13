@@ -70,10 +70,59 @@ async function fetchUsers() {
     }
 }
 
+// ✅ Add User
+async function addUser(event) {
+    event.preventDefault(); // You need this to prevent page reload
+
+    const form = document.getElementById("addUserForm");
+    const status = document.getElementById("status-bar");
+
+    if (!form) {
+        console.error("Form not found");
+        return;
+    }
+
+    const formData = new FormData(form);
+    status.innerHTML = "Loading...";
+    status.style.color = "gray";
+
+    try {
+        const response = await fetch(
+            `http://localhost:8000/backend/users/create_user.php?action=register`,
+            {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                },
+                body: formData,
+            }
+        );
+
+        const result = await response.json();
+
+        status.innerHTML = "Successfully added user.";
+        status.style.color = "green";
+        form.reset();
+
+        setTimeout(() => {
+            fetchUsers();
+            closeUserModal();
+            status.innerHTML = "";
+            status.style.color = "";
+        }, 2000);
+    } catch (error) {
+        console.error("Error:", error);
+        status.innerHTML = error.message || "An error occurred.";
+        status.style.color = "red";
+    }
+}
+
+
 // ✅ Delete User
 async function deleteUser(id) {
     const status = document.getElementById("status-bar3");
     status.innerHTML = "Loading ..."
+    status.style.color = "gray"
     try {
         const response = await fetch(`${BASE_URL}/backend/users/delete_users.php`, {
             method: "DELETE",
@@ -88,51 +137,18 @@ async function deleteUser(id) {
         status.innerHTML = "successfully deleted user"
         status.style.color = "green"
 
-        closeUserDeleteModal()
-        await fetchUsers(); // Refresh user list
-    } catch (error) {
-        status.innerHTML = error;
-        status.style.color = "red"
-    }
-}
-
-// ✅ Add User
-async function addUser(event) {
-    const form = document.getElementById("addUserForm");
-    if (!form) {
-        console.error("Form not found");
-        return;
-    }
-
-    const formData = new FormData(form);
-    const status = document.getElementById("status-bar")
-    status.innerHTML = "Loading ...."
-
-    try {
-        const response = await fetch(
-            `http://localhost:8000/backend/users/create_user.php?action=register`,
-            {
-                method: "POST",
-                headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-                body: formData,
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error("Failed to add user");
-        }
-        status.innerHTML = "Successfully added user";
-        status.style.color = "green"
-
         setTimeout(() => {
-                fetchUsers();
-            closeUserModal();
-        }, 2000);
+            closeUserDeleteModal()
+            fetchUsers();
+            status.innerHTML = "";
+            status.style.color = "";
+        }, 1000);
     } catch (error) {
         status.innerHTML = error;
         status.style.color = "red"
     }
 }
+
 
 // ✅ Update User
 async function updateUser(event) {
@@ -144,12 +160,12 @@ async function updateUser(event) {
     const role = document.getElementById("editUserRole").value;
     const status = document.getElementById("status-bar2")
     status.innerHTML = "Loading ...."
+    status.style.color = "gray"
 
     try {
         const response = await fetch(`${BASE_URL}/backend/users/update_users.php`, {
             method: "PUT",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify({ id, name, email, role }),
@@ -161,8 +177,12 @@ async function updateUser(event) {
         status.innerHTML = "Successfully updated user";
         status.style.color = "green"
 
-        await fetchUsers();
-        closeEditUserModal();
+        setTimeout(() => {
+            closeEditUserModal();
+            fetchUsers();
+            status.innerHTML = "";
+            status.style.color = "";
+        }, 1000)
     } catch (error) {
         status.innerHTML = error;
         status.style.color = "red";

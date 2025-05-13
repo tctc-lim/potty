@@ -493,7 +493,6 @@
       });
     }
 
-
     // client slider 
     if ('.client-slider-active') {
       var client_slider_active = new Swiper(".client-slider-active", {
@@ -507,6 +506,42 @@
         },
       });
     }
+
+    const BASE_URL = "http://localhost:8000"; // Adjust if needed
+
+    document.addEventListener("DOMContentLoaded", async () => {
+      const params = new URLSearchParams(window.location.search);
+      const blogId = params.get("id");
+
+      if (!blogId) {
+        document.body.innerHTML = "<div style='display:flex; justify-content: center; align-items: center; height: 100vh;'><h2 style='color: black; text-align: center'>Blog ID not provided.</h2></div>";
+        return;
+      }
+
+      try {
+        const response = await fetch(`${BASE_URL}/backend/blogs/blogs.php?id=${blogId}`);
+        const data = await response.json();
+
+        if (data.success) {
+          const blog = data.blog;
+          document.getElementById("blog-title").innerText = blog.title;
+          document.getElementById("read-time").innerText = `Read time: ${blog.read_time} min`;
+
+          if (blog.image1) {
+            document.getElementById("blog-image").innerHTML = `<img src="${BASE_URL}/backend/blogs/${blog.image1}" alt="Blog Image" style="max-width: 100%;"/>`;
+          }
+
+          document.getElementById("content1").innerHTML = blog.content1;
+          document.getElementById("content2").innerHTML = blog.content2;
+          document.getElementById("tags").innerText = `Tags: ${blog.tag1}, ${blog.tag2}, ${blog.tag3}`;
+        } else {
+          document.body.innerHTML = `<h2>Blog not found</h2>`;
+        }
+      } catch (error) {
+        console.error("Error fetching blog:", error);
+        document.body.innerHTML = "<div style='display:flex; justify-content: center; align-items: center; height: 100vh;'><h2 style='color: black; text-align: center'>Something went wrong loading the blog.</h2></div>";
+      }
+    });
 
   </script>
 

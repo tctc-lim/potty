@@ -2,7 +2,7 @@
 require "../auth/db.php";
 require "../auth/auth_middleware.php";
 
-header("Access-Control-Allow-Origin: https://mylovesense.online");
+header("Access-Control-Allow-Origin: http://127.0.0.1:5500");
 header("Access-Control-Allow-Methods: PUT, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");
 header("Content-Type: application/json");

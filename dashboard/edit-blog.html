@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=0.6">
+    <meta name="viewport" content="width=device-width, initial-scale= 1.0">
     <title>Edit Blog</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/mediaquery.css">
-    <link rel="stylesheet" href="../assets/fontawesome/css/all.css">
-    <link rel="icon" type="image/png" href="../images/logos/fvico3.png">
-    <script src="../js/verify.js"></script>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/mediaquery.css">
+    <link rel="stylesheet" href="../assets/css/all.min.css">
+    <link rel="icon" type="image/png" href="../assets/imgs/logo/favicon.png">
+    <script src="../assets/js/verify.js"></script>
     <script src="https://cdn.tiny.cloud/1/uhe3odlme9v44d3l3usxdv9qizug88pw3tgvum72ns5dr0el/tinymce/7/tinymce.min.js"
         referrerpolicy="origin"></script>
 
@@ -60,7 +60,7 @@
     </div>
     <div id="dashboard">
         <div class="top-bar">
-            <img src="../images/logos/logo2.png" alt="logo" class="logo" width="150px">
+            <img src="../assets/imgs/logo/logo-purple.png" alt="logo" class="logo" width="200px">
             <h1 class="user">Welcome, <p id="loggedinuser"></p>
             </h1>
         </div>
@@ -73,11 +73,6 @@
                 <div class="input-div">
                     <label for="title">Blog Title:</label>
                     <input type="text" id="title" name="title" placeholder="Blog Title" required>
-                </div>
-
-                <div class="input-div">
-                    <label for="read_time">Estimated Read Time:</label>
-                    <input type="text" name="read_time" id="read_time" placeholder="e.g 3 MIN READ" required>
                 </div>
 
                 <div class="image-div">
@@ -106,6 +101,15 @@
                 <div class="blog-content-div">
                     <label for="content2">Second Blog Content:</label>
                     <textarea name="content2" id="content2">Start your blog here!</textarea>
+                </div>
+
+                <div class="image-div">
+                    <label for="image3">Add Third Image:</label>
+                    <input type="file" name="image3" id="image3" accept="image/*">
+                </div>
+
+                <div class="preview-container">
+                    <img id="preview-image3" class="preview" style="object-fit: contain;" src="" alt="No Image" />
                 </div>
 
                 <div class="tag-div">
@@ -150,7 +154,7 @@
                 return;
             }
 
-            const BASE_URL = "https://mylovesense.online"; // Change to your API URL
+            const BASE_URL = "http://localhost:8000"; // Change to your API URL
             const message = document.getElementById("status-message")
 
 
@@ -161,7 +165,6 @@
                     if (data.success) {
                         document.getElementById("blogId").value = data.blog.id;
                         document.getElementById("title").value = data.blog.title;
-                        document.getElementById("read_time").value = data.blog.read_time;
                         document.getElementById("content1").value = data.blog.content1;
                         document.getElementById("content2").value = data.blog.content2;
                         document.getElementById("tag1").value = data.blog.tag1;
@@ -176,6 +179,10 @@
                         if (data.blog.image2) {
                             document.getElementById("preview-image2").src = `${BASE_URL}/backend/blogs/${data.blog.image2}`;
                             document.getElementById("preview-image2").setAttribute("data-filename", data.blog.image2);
+                        }
+                        if (data.blog.image3) {
+                            document.getElementById("preview-image3").src = `${BASE_URL}/backend/blogs/${data.blog.image3}`;
+                            document.getElementById("preview-image3").setAttribute("data-filename", data.blog.image3);
                         }
                     } else {
                         alert("Failed to load blog data");
@@ -205,13 +212,23 @@
                 }
             });
 
+            document.getElementById("image3").addEventListener("change", function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById("preview-image3").src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
             document.getElementById("edit-blog-form").addEventListener("submit", async (e) => {
                 message.innerHTML = "Loading..."
                 e.preventDefault();
 
                 const id = document.getElementById("blogId").value;
                 const title = document.getElementById("title").value;
-                const read_time = document.getElementById("read_time").value;
                 const content1 = document.getElementById("content1").value;
                 const content2 = document.getElementById("content2").value;
                 const tag1 = document.getElementById("tag1").value;
@@ -221,17 +238,18 @@
 
                 const image1File = document.getElementById("image1").files[0];
                 const image2File = document.getElementById("image2").files[0];
+                const image3File = document.getElementById("image3").files[0];
 
                 const token = localStorage.getItem("token");
 
                 let image1 = document.getElementById("preview-image1").getAttribute("data-filename");
                 let image2 = document.getElementById("preview-image2").getAttribute("data-filename");
+                let image3 = document.getElementById("preview-image3").getAttribute("data-filename");
 
                 // ✅ Now send JSON request with updated image paths
                 const requestData = {
                     id,
                     title,
-                    read_time,
                     content1,
                     content2,
                     tag1,
@@ -256,11 +274,12 @@
                     message.innerHTML = "Blog updated successfully!"
                     message.style.color = "green"
                     // ✅ If new images are selected, upload them separately
-                    if (image1File || image2File) {
+                    if (image1File || image2File || image3File) {
                         const formData = new FormData();
                         formData.append("id", id);
                         if (image1File) formData.append("image1", image1File);
                         if (image2File) formData.append("image2", image2File);
+                        if (image3File) formData.append("image3", image3File);
 
                         const imageUploadResponse = await fetch(`${BASE_URL}/backend/blogs/upload_images.php`, {
                             method: "POST",
@@ -272,17 +291,17 @@
                         if (imageUploadResult.success) {
                             image1 = imageUploadResult.image1 || image1;
                             image2 = imageUploadResult.image2 || image2;
-                            setTimeout(() => {
-                                window.location.href = "my-blogs.html"; // Redirect after success
-                            }, 2000);
+                            image3 = imageUploadResult.image3 || image3;
                         } else {
                             message.innerHTML = "Upload Image Failed"
                         }
-                        return false;
                     }
+                    setTimeout(() => {
+                        window.location.href = "my-blogs.html";
+                    }, 2000);
                 } else {
-                    status.innerHTML = `Update failed: ${result.error}`;
-                    status.style.color = "red"
+                    message.innerHTML = `Update failed: ${result.error}`;
+                    message.style.color = "red";
                 }
 
                 return false;

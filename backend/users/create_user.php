@@ -39,6 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(':password', $hashedPassword);
         $stmt->bindParam(':role', $role);
 
+        
+
         if ($stmt->execute()) {
             // ✅ Log the activity
             $adminId = $user['id']; // Get the admin's ID
