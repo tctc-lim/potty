@@ -47,7 +47,9 @@ async function login(event) {
         message.innerText = "Login successful!";
 
         // Save token and user details
-        localStorage.setItem("token", data.token);
+        localStorage.setItem('token', data.accessToken);
+        localStorage.setItem('refreshToken', data.refreshToken);
+        
         localStorage.setItem("user", JSON.stringify(data.user));
 
         setTimeout(() => {
@@ -55,7 +57,7 @@ async function login(event) {
         }, 2000);
     } catch (error) {
         message.style.color = "red";
-        message.innerText = error;
+        message.innerText = "Login Failed. Try Again!";
     } finally {
         loader.style.display = "none"; // Hide loader
     }

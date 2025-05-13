@@ -13,7 +13,7 @@
     }
 
     .nav {
-        width: 60px !important; 
+        width: 60px !important;
     }
 
     .user-bar {
@@ -24,7 +24,7 @@
     .nav .nav-links p {
         opacity: 0;
         display: none !important;
-      }
+    }
 
     .blog-img {
         width: 250px;
@@ -34,12 +34,12 @@
     .blog-data-content {
         flex-wrap: wrap;
     }
-    
+
     .sign {
         position: relative;
         left: 23%;
     }
-    
+
     .user {
         margin-top: 20px !important;
     }
@@ -48,4 +48,15 @@
 
 .user {
     flex-wrap: nowrap !important;
+}
+
+@media (max-width: 400px) {
+    .blog .thumb img, .blog .thumb {
+        width: 300px;
+    }
+
+    .blog .meta:first-child {
+        padding: 0px;
+        border: none;
+    }
 }

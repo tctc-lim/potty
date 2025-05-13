@@ -22,6 +22,39 @@ use Firebase\JWT\JWT;
 
 $secretKey = "admin@poeintl1224";
 
+// Function to generate JWT Token
+function generateJWT($user) {
+    global $secretKey;
+
+    // JWT Payload
+    $payload = [
+        "id" => $user["id"],
+        "name" => $user["name"],
+        "email" => $user["email"],
+        "role" => $user["role"],
+        "iat" => time(),
+        "exp" => time() + 3600 // Token expires in 1 hour
+    ];
+
+    return JWT::encode($payload, $secretKey, "HS256");
+}
+
+// Function to create the refresh token
+function generateRefreshToken($user) {
+    global $secretKey;
+
+    // Refresh token has a longer expiration (e.g., 7 days)
+    $payload = [
+        "id" => $user["id"],
+        "email" => $user["email"],
+        "role" => $user["role"],
+        "iat" => time(),
+        "exp" => time() + (7 * 24 * 60 * 60) // Refresh token expires in 7 days
+    ];
+
+    return JWT::encode($payload, $secretKey, "HS256");
+}
+
 // ✅ Get JSON data securely
 $input = file_get_contents("php://input");
 $data = json_decode($input, true);
@@ -51,22 +84,15 @@ if (!$user || $password !== $user["password"]) {
     exit();
 }
 
-// ✅ Generate JWT Token
-$payload = [
-    "id" => $user["id"],
-    "name" => $user["name"],
-    "email" => $user["email"],
-    "role" => $user["role"],
-    "iat" => time(),
-    "exp" => time() + 3600 // Token expires in 1 hour
-];
+// ✅ Generate both JWT and refresh token
+$accessToken = generateJWT($user);
+$refreshToken = generateRefreshToken($user);
 
-$token = JWT::encode($payload, $secretKey, "HS256");
-
-// ✅ Return token and user data
+// ✅ Return both tokens and user data
 echo json_encode([
     "success" => true,
-    "token" => $token,
+    "accessToken" => $accessToken,
+    "refreshToken" => $refreshToken,
     "user" => [
         "id" => $user["id"],
         "name" => $user["name"],
@@ -74,4 +100,5 @@ echo json_encode([
         "role" => $user["role"]
     ]
 ]);
+
 ?>
