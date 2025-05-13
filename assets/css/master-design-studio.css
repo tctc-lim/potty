@@ -9897,6 +9897,13 @@ section {
   z-index: 999;
 }
 
+@media only screen and (min-width: 1400px) {
+  .testimonial-area .slider-nav {
+      width: calc(100% + 70px);
+      margin-inline-start: -30px;
+  }
+}
+
 @media only screen and (max-width: 1199px) {
   .testimonial-area .slider-nav {
     width: calc(100% + 20px);
@@ -10116,7 +10123,7 @@ section {
 }
 
 .dark .team-area, .dark .blog-area {
-  background-color: var(--black-2)
+  background-color: #1b1b1b;
 }
 
 .team-area-inner {

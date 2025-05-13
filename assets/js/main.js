@@ -364,49 +364,38 @@ document.getElementById('contactForm').addEventListener('keydown', function (e) 
 });
 
 document.getElementById('contactForm').addEventListener('submit', function (e) {
-  const status = document.getElementById('contact-status');
-  status.innerText = 'Sending...';
   e.preventDefault();
 
+  const status = document.getElementById('contact-status');
+  status.innerText = 'Sending...';
+
   const form = e.target;
+  const formData = new FormData(form);
 
-  const formData = {
-    Name: form.Name.value.trim(),
-    Email: form.Email.value.trim(),
-    mainService: form.mainService.value,
-    subService: form.subService.value,
-    Message: form.Message.value.trim()
-  };
-
-  // Basic validation (optional, extend as needed)
-  if (!formData.Name || !formData.Email || !formData.mainService || !formData.subService || !formData.Message) {
-    alert('Please fill in all required fields.');
+  // Basic check
+  if (!formData.get('Name') || !formData.get('Email') || !formData.get('mainService') || !formData.get('subService') || !formData.get('Message')) {
+    alert('Please fill in all fields.');
     return;
   }
 
-  // Send the data via POST (update the URL to your actual endpoint)
-  fetch('http://localhost:8000/contact.php', {
+  fetch('http://localhost:800/contact.php', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(formData)
+    body: formData
   })
-    .then(response => {
-      if (response.ok) {
-        status.innerText = 'Thank you for your message! We will get back to you soon.';
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 200) {
+        status.innerText = data.statusText;
         status.style.color = 'green';
-        setTimeout(() => {
-          form.reset();
-        }, 1500);
+        form.reset();
       } else {
-        status.innerText = 'There was an error sending your message. Please try again.';
+        status.innerText = data.statusText;
         status.style.color = 'red';
       }
     })
     .catch(error => {
       console.error('Error:', error);
-      status.innerText = 'There was an error sending your message. Please try again.';
+      status.innerText = 'There was an error sending your message.';
       status.style.color = 'red';
     });
 });
